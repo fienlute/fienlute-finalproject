@@ -12,6 +12,8 @@
 		EED0DFC61E250ADA00F33D32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED0DFC41E250ADA00F33D32 /* Main.storyboard */; };
 		EED0DFC81E250ADA00F33D32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EED0DFC71E250ADA00F33D32 /* Assets.xcassets */; };
 		EED0DFCB1E250ADA00F33D32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED0DFC91E250ADA00F33D32 /* LaunchScreen.storyboard */; };
+		EED0DFD31E250B1800F33D32 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EED0DFD21E250B1800F33D32 /* README.md */; };
+		EED0DFD51E250B2F00F33D32 /* DESIGN.md in Sources */ = {isa = PBXBuildFile; fileRef = EED0DFD41E250B2F00F33D32 /* DESIGN.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		EED0DFC71E250ADA00F33D32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EED0DFCA1E250ADA00F33D32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EED0DFCC1E250ADA00F33D32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EED0DFD21E250B1800F33D32 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EED0DFD41E250B2F00F33D32 /* DESIGN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DESIGN.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				EED0DFC71E250ADA00F33D32 /* Assets.xcassets */,
 				EED0DFC91E250ADA00F33D32 /* LaunchScreen.storyboard */,
 				EED0DFCC1E250ADA00F33D32 /* Info.plist */,
+				EED0DFD41E250B2F00F33D32 /* DESIGN.md */,
+				EED0DFD21E250B1800F33D32 /* README.md */,
 			);
 			path = GOals;
 			sourceTree = "<group>";
@@ -136,7 +142,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EED0DFD31E250B1800F33D32 /* README.md in Sources */,
 				EED0DFC31E250ADA00F33D32 /* ViewController.swift in Sources */,
+				EED0DFD51E250B2F00F33D32 /* DESIGN.md in Sources */,
 				EED0DFC11E250ADA00F33D32 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
