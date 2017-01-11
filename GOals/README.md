@@ -29,12 +29,14 @@ minimum viable product:
 3.	De gebruikers kunnen doelen toevoegen  
 4.	Als de gebruiker een doel behaald heeft, worden de punten toegevoegd aan het puntensaldo  
 5.	De gebruikers worden in een klassement geordend op hoogte van puntensaldo  
+6.  Op de persoonlijke pagina staan het aantal punten, het level en de behaalde doelen 
 
 optional to implement:  
 1.	De doelen moeten worden goed gekeurd door 60% van de gebruikers  
 2.	Gebruikers kunnen doelen die ze willen behalen als favoriet instellen   
-3.	Challenge 1 specifieke gebruiker   
-4.	Levels  
+3.	Challenge 1 specifieke gebruiker    
 5.  Beloningen   
+6.  Foto toevoegen als gedaan 
+7.  Live feed wie wat heeft bereikt 
 
 
