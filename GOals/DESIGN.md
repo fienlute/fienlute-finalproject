@@ -28,3 +28,5 @@ optional to implement:
 5.  Beloningen   
 6.  Foto toevoegen als gedaan 
 7.  Live feed wie wat heeft bereikt 
+
+
