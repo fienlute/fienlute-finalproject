@@ -35,5 +35,6 @@ optional to implement:
 ### sketches
 ![alt tag](https://github.com/fienlute/programmeerproject/blob/master/GOals/doc/sketches%20GOals.png)
 
+git ls-files | xargs wc -l
 
 
