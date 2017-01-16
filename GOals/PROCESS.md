@@ -34,7 +34,7 @@ Vandaag heb ik mijn prototype gepresenteerd.
 Vandaag heb ik het inloggen met Firebase werkend gekregen. Verschillende gebruikers kunnen nu een account aanmaken met een email adres en een wachtwoord, ze kunnen inloggen met dit account en ze kunnen doelen toevoegen aan de pagina. 
 
 #dinsdag 17 januari
-
+groepen fixen
 
 #woensdag 18 januari 
 
