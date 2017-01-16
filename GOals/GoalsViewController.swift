@@ -136,7 +136,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                          style: .default)
         
         alert.addTextField()
-        
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         
