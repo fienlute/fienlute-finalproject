@@ -26,7 +26,13 @@ optional to implement:
 2.	Gebruikers kunnen doelen die ze willen behalen als favoriet instellen   
 3.	Challenge 1 specifieke gebruiker    
 5.  Beloningen   
-6.  Foto toevoegen als gedaan   
+6.  Foto toevoegen als gedaan 
 7.  Live feed wie wat heeft bereikt 
+
+### diagram 
+![alt tag](https://github.com/fienlute/programmeerproject/blob/master/GOals/doc/diagram%20GOals.png)
+
+### sketches
+![alt tag](https://github.com/fienlute/programmeerproject/blob/master/GOals/doc/sketches%20GOals.png)
 
 

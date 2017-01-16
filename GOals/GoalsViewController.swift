@@ -148,7 +148,12 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func LogoutDidTouch(_ sender: Any) {
-        try! FIRAuth.auth()!.signOut()
+        let firebaseAuth = FIRAuth.auth()
+        do {
+            try firebaseAuth?.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
     }
     
 }
