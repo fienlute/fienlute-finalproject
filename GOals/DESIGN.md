@@ -11,7 +11,7 @@ Op het scherm dat verschijnt nadat de gebruiker is ingelogd verschijnen de doele
 In de navigatiebar onderaan het scherm kan genavigeerd worden naar een persoonlijk scherm waarop de informatie van de huidige gebruiker te zien is: de naam, het aantal punten, het level, de behaalde doelen en een foto. Deze informatie wordt opgehaald uit Firebase. 
 
 In de navigatiebar kan ook naar de klassementspagina genavigeerd worden. Op deze pagina zijn alle gebruikers uit de groep geordend op puntenaantal. Ook deze informatie wordt opgehaald uit Firebase. 
-
+  
 
 minimum viable product:  
 1.	De gebruiker kan een account aanmaken  

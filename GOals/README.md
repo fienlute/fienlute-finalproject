@@ -12,7 +12,7 @@ De app 'GOals' is een app waarin de gebruiker op speelse wijze wordt gestimuleer
 
 ### what features will be available 
 De gebruiker kan een account aanmaken en andere accountbeheerders toevoegen aan een groep of door een andere gebruiker worden toegevoegd aan een groep. Binnen deze groep kan elke gebruiker doelen toevoegen, waar punten aan gekoppeld zijn. Een doel moet door 60% van de gebruikers goed gekeurd worden voordat het daadwerkelijk toegevoegd wordt aan de app. Wanneer je als gebruiker een doel hebt bereikt kun je het afvinken en worden de punten die aan dit doel gekoppeld waren toegevoegd aan je puntensaldo. Zo zal er een klassement ontstaan, gesorteerd op wie er de meeste punten heeft. Wanneer een gebruiker een bepaald aantal punten heeft, gaat hij/zij een level omhoog. 
-
+  
 ### what data sources will be needed 
 Ik zal de online-database Firebase gebruiken om de verschillende gebruikers en groepen op te slaan.  
 
