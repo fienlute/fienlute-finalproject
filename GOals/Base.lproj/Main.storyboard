@@ -127,6 +127,7 @@
                                         <color key="backgroundColor" red="0.1863599718" green="0.27947890759999999" blue="0.56875973940000002" alpha="0.15584867294520549" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="labelGoal" destination="n9h-x7-0ZQ" id="IfE-RN-tK2"/>
+                                            <outlet property="labelPoints" destination="PVg-n0-VFn" id="Pb0-wc-rJm"/>
                                             <outlet property="labelUser" destination="mP8-m9-Pyg" id="0PV-iL-SiB"/>
                                         </connections>
                                     </tableViewCell>

@@ -12,6 +12,7 @@ class GoalsCell: UITableViewCell {
 
     @IBOutlet weak var labelGoal: UILabel!
     @IBOutlet weak var labelUser: UILabel!
+    @IBOutlet weak var labelPoints: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

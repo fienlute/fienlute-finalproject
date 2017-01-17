@@ -68,9 +68,11 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GoalsCell
         let goal = items[indexPath.row]
 
+    
         cell.labelGoal?.text = goal.name
         cell.labelUser?.text = goal.addedByUser
-        
+        cell.labelPoints?.text = String(goal.points) + " xp"
+
         
         toggleCellCheckbox(cell, isCompleted: goal.completed)
         
@@ -116,34 +118,34 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let alert = UIAlertController(title: "Goal",
                                       message: "Add a new goal",
                                       preferredStyle: .alert)
-
-    let saveAction = UIAlertAction(title: "Save",
-                                style: .default) { _ in
-                                    guard let textField = alert.textFields?.first,
-                                        let text = textField.text else { return }
-                                    
-                                    let goal = Goal(name: text,
-                                                            addedByUser: self.user.email,
-                                            completed: false)
-
-                                    let goalRef = self.ref.child(text.lowercased())
-                                    
-                                    goalRef.setValue(goal.toAnyObject())
-                        
+        
+        let saveAction = UIAlertAction(title: "Save",
+                                       style: .default) { action in
+                                        let goalField = alert.textFields![0].text
+                                        let points: Int = Int(alert.textFields![1].text!)!
+                                        let goal = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points)
+                                        
+                                        let goalRef = self.ref.child(goalField!)
+                                        
+                                        goalRef.setValue(goal.toAnyObject())
+                                        
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
                                          style: .default)
         
-        alert.addTextField()
+        alert.addTextField { textGoal in
+            textGoal.placeholder = "Enter a new goal"
+        }
+        
+        alert.addTextField { textPoints in
+            textPoints.placeholder = "How many points is this worth? 10-100"
+        }
+        
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
-    }
-
-    func userCountButtonDidTouch() {
-        performSegue(withIdentifier: listToUsers, sender: nil)
     }
     
     @IBAction func LogoutDidTouch(_ sender: Any) {

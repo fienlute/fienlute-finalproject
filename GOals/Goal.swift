@@ -16,12 +16,14 @@ struct Goal {
     let addedByUser: String
     let ref: FIRDatabaseReference?
     var completed: Bool
+    let points: Int
     
-    init(name: String, addedByUser: String, completed: Bool, key: String = "") {
+    init(name: String, addedByUser: String, completed: Bool, points: Int, key: String = "") {
         self.key = key
         self.name = name
         self.addedByUser = addedByUser
         self.completed = completed
+        self.points = points
         self.ref = nil
     }
     
@@ -31,6 +33,7 @@ struct Goal {
         name = snapshotValue["name"] as! String
         addedByUser = snapshotValue["addedByUser"] as! String
         completed = snapshotValue["completed"] as! Bool
+        points = snapshotValue["points"] as! Int
         ref = snapshot.ref
     }
     
@@ -38,7 +41,8 @@ struct Goal {
         return [
             "name": name,
             "addedByUser": addedByUser,
-            "completed": completed
+            "completed": completed,
+            "points": points
         ]
     }
     
