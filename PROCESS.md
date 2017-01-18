@@ -45,6 +45,5 @@ De gebruiker kan nu punten toekennen aan de doelen. Ik heb een struct aangemaakt
 ##vrijdag 20 januari
 
 
-
 #week 3 
 ##maandag 
