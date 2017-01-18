@@ -17,6 +17,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: Properties
     var items: [Goal] = []
+    let groupRef = FIRDatabase.database().reference(withPath: "groups")
     let ref = FIRDatabase.database().reference(withPath: "goals")
     let usersRef = FIRDatabase.database().reference(withPath: "online")
     var user: User!
@@ -25,6 +26,9 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // if a user is not in a group, give alert
+        
+            
         // set background mountains
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
         

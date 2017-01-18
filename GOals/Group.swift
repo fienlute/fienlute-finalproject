@@ -22,7 +22,6 @@ struct Group {
         let snapshotValue = snapshot.value as! [String: AnyObject]
         goals = snapshotValue["goals"] as! Array
         name = snapshotValue["name"] as! String
-
     }
-
 }
+
