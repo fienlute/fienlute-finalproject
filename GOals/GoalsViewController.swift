@@ -70,7 +70,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     
         cell.labelGoal?.text = goal.name
-        cell.labelUser?.text = goal.addedByUser
+        cell.labelUser?.text = "added by: " + goal.addedByUser
         cell.labelPoints?.text = String(goal.points) + " xp"
 
         
@@ -156,5 +156,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print ("Error signing out: %@", signOutError)
         }
     }
+    
+    
     
 }

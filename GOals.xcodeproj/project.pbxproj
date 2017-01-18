@@ -13,17 +13,18 @@
 		EE09BCC71E2D027A0004D6C2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE09BCC61E2D027A0004D6C2 /* Info.plist */; };
 		EEC32D701E295B4400D76EBC /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC32D6F1E295B4400D76EBC /* Goal.swift */; };
 		EEC32D721E295DCE00D76EBC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC32D711E295DCE00D76EBC /* User.swift */; };
-		EEC32D791E2CCE9500D76EBC /* PROCESS.md in Sources */ = {isa = PBXBuildFile; fileRef = EEC32D781E2CCE9500D76EBC /* PROCESS.md */; };
 		EED0DFC11E250ADA00F33D32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED0DFC01E250ADA00F33D32 /* AppDelegate.swift */; };
 		EED0DFC31E250ADA00F33D32 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED0DFC21E250ADA00F33D32 /* LoginViewController.swift */; };
 		EED0DFC61E250ADA00F33D32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED0DFC41E250ADA00F33D32 /* Main.storyboard */; };
 		EED0DFC81E250ADA00F33D32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EED0DFC71E250ADA00F33D32 /* Assets.xcassets */; };
 		EED0DFCB1E250ADA00F33D32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED0DFC91E250ADA00F33D32 /* LaunchScreen.storyboard */; };
-		EED0DFD31E250B1800F33D32 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EED0DFD21E250B1800F33D32 /* README.md */; };
-		EED0DFD51E250B2F00F33D32 /* DESIGN.md in Sources */ = {isa = PBXBuildFile; fileRef = EED0DFD41E250B2F00F33D32 /* DESIGN.md */; };
 		EED0DFD71E2784B800F33D32 /* GoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED0DFD61E2784B800F33D32 /* GoalsViewController.swift */; };
 		EED0DFD91E27B40400F33D32 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED0DFD81E27B40400F33D32 /* RankingViewController.swift */; };
 		EED0DFDB1E27B41900F33D32 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED0DFDA1E27B41900F33D32 /* DetailViewController.swift */; };
+		EED9BB131E2E59ED00D2668D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED9BB121E2E59ED00D2668D /* Group.swift */; };
+		EED9BB171E2E5BD100D2668D /* DESIGN.md in Sources */ = {isa = PBXBuildFile; fileRef = EED9BB141E2E5BD100D2668D /* DESIGN.md */; };
+		EED9BB181E2E5BD100D2668D /* PROCESS.md in Sources */ = {isa = PBXBuildFile; fileRef = EED9BB151E2E5BD100D2668D /* PROCESS.md */; };
+		EED9BB191E2E5BD100D2668D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EED9BB161E2E5BD100D2668D /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,18 +37,19 @@
 		EEC32D6F1E295B4400D76EBC /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		EEC32D711E295DCE00D76EBC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EEC32D771E2CCD5B00D76EBC /* GOals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GOals.entitlements; sourceTree = "<group>"; };
-		EEC32D781E2CCE9500D76EBC /* PROCESS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = PROCESS.md; sourceTree = "<group>"; };
 		EED0DFBD1E250ADA00F33D32 /* GOals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GOals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED0DFC01E250ADA00F33D32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EED0DFC21E250ADA00F33D32 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EED0DFC51E250ADA00F33D32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EED0DFC71E250ADA00F33D32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EED0DFCA1E250ADA00F33D32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EED0DFD21E250B1800F33D32 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		EED0DFD41E250B2F00F33D32 /* DESIGN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DESIGN.md; sourceTree = "<group>"; };
 		EED0DFD61E2784B800F33D32 /* GoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsViewController.swift; sourceTree = "<group>"; };
 		EED0DFD81E27B40400F33D32 /* RankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		EED0DFDA1E27B41900F33D32 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		EED9BB121E2E59ED00D2668D /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		EED9BB141E2E5BD100D2668D /* DESIGN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DESIGN.md; sourceTree = "<group>"; };
+		EED9BB151E2E5BD100D2668D /* PROCESS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = PROCESS.md; sourceTree = "<group>"; };
+		EED9BB161E2E5BD100D2668D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,20 +96,11 @@
 			isa = PBXGroup;
 			children = (
 				EEC32D6F1E295B4400D76EBC /* Goal.swift */,
+				EED9BB121E2E59ED00D2668D /* Group.swift */,
 				EEC32D711E295DCE00D76EBC /* User.swift */,
 				EE09BCC21E2CF86C0004D6C2 /* GoalsCell.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		EEC32D7C1E2CCFB300D76EBC /* Markdown Files */ = {
-			isa = PBXGroup;
-			children = (
-				EED0DFD41E250B2F00F33D32 /* DESIGN.md */,
-				EED0DFD21E250B1800F33D32 /* README.md */,
-				EEC32D781E2CCE9500D76EBC /* PROCESS.md */,
-			);
-			name = "Markdown Files";
 			sourceTree = "<group>";
 		};
 		EEC32D7D1E2CD44900D76EBC /* Layouts */ = {
@@ -139,6 +132,9 @@
 		EED0DFB41E250AD900F33D32 = {
 			isa = PBXGroup;
 			children = (
+				EED9BB141E2E5BD100D2668D /* DESIGN.md */,
+				EED9BB151E2E5BD100D2668D /* PROCESS.md */,
+				EED9BB161E2E5BD100D2668D /* README.md */,
 				EED0DFBF1E250ADA00F33D32 /* GOals */,
 				EED0DFBE1E250ADA00F33D32 /* Products */,
 				6D8FAADBE55FC48C2A2905B6 /* Pods */,
@@ -162,7 +158,6 @@
 				EEC32D7A1E2CCF7D00D76EBC /* Controllers */,
 				EEC32D7D1E2CD44900D76EBC /* Layouts */,
 				EEC32D7E1E2CD46600D76EBC /* Supporting Files */,
-				EEC32D7C1E2CCFB300D76EBC /* Markdown Files */,
 				EEC32D7F1E2CD48600D76EBC /* Other */,
 				EED0DFC71E250ADA00F33D32 /* Assets.xcassets */,
 			);
@@ -301,12 +296,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEC32D701E295B4400D76EBC /* Goal.swift in Sources */,
-				EED0DFD31E250B1800F33D32 /* README.md in Sources */,
 				EED0DFC31E250ADA00F33D32 /* LoginViewController.swift in Sources */,
-				EED0DFD51E250B2F00F33D32 /* DESIGN.md in Sources */,
+				EED9BB131E2E59ED00D2668D /* Group.swift in Sources */,
 				EED0DFC11E250ADA00F33D32 /* AppDelegate.swift in Sources */,
+				EED9BB171E2E5BD100D2668D /* DESIGN.md in Sources */,
 				EE09BCC31E2CF86C0004D6C2 /* GoalsCell.swift in Sources */,
-				EEC32D791E2CCE9500D76EBC /* PROCESS.md in Sources */,
+				EED9BB191E2E5BD100D2668D /* README.md in Sources */,
+				EED9BB181E2E5BD100D2668D /* PROCESS.md in Sources */,
 				EEC32D721E295DCE00D76EBC /* User.swift in Sources */,
 				EED0DFD71E2784B800F33D32 /* GoalsViewController.swift in Sources */,
 				EED0DFD91E27B40400F33D32 /* RankingViewController.swift in Sources */,
