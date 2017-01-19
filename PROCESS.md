@@ -37,10 +37,10 @@ Vandaag heb ik het inloggen met Firebase werkend gekregen. Verschillende gebruik
 De gebruiker kan nu punten toekennen aan de doelen. Ik heb een struct aangemaakt voor groepen en bedacht hoe en waar ik deze door de gebruiker wil laten aanmaken. 
 
 ##woensdag 18 januari 
-
+We hebben met ons groepje aan een stile guide gewerkt. Ik heb verder geprobeerd mijn groepen aan te maken in Firebase waarin de verschillende goals van de groep opgeslagen worden. Het aanmaken van de groepen lukt, alleen klopt de hierchie van de boomstructuur nog niet. De goals en de groups zijn nu nog siblings ipv dat de goals children van de group zijn. 
 
 ##donderdag 19 januari
-
+Vandaag hebben we de styleguide afgemaakt. Verder heb ik gezorgd dat er groepen aangemaakt kunnen worden waarbinnen er doelen kunnen worden gemaakt. Ik durf op dit moment niet te comitten omdat ik heel veel veranderd heb en nog niet tevreden ben.
   
 ##vrijdag 20 januari
 
