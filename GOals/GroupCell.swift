@@ -1,19 +1,18 @@
 //
-//  GoalsCell.swift
+//  GroupCell.swift
 //  GOals
 //
-//  Created by Fien Lute on 16-01-17.
+//  Created by Fien Lute on 19-01-17.
 //  Copyright © 2017 Fien Lute. All rights reserved.
 //
 
 import UIKit
 
-class GoalsCell: UITableViewCell {
-//
-//    @IBOutlet weak var labelGoal: UILabel!
-//    @IBOutlet weak var labelUser: UILabel!
-//    @IBOutlet weak var labelPoints: UILabel!
-    
+class GroupCell: UITableViewCell {
+
+    @IBOutlet weak var newChannelNameField: UITextField!
+    @IBOutlet weak var createChannelButton: UIButton!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,4 +25,3 @@ class GoalsCell: UITableViewCell {
     }
 
 }
-

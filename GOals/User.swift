@@ -19,7 +19,7 @@ struct User {
             email = authData.email!
         }
         
-        init(uid: String, email: String) {
+    init(uid: String, email: String) {
             self.uid = uid
             self.email = email
     }

@@ -11,6 +11,7 @@
 		EE09BCC31E2CF86C0004D6C2 /* GoalsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE09BCC21E2CF86C0004D6C2 /* GoalsCell.swift */; };
 		EE09BCC51E2D01AE0004D6C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE09BCC41E2D01AE0004D6C2 /* GoogleService-Info.plist */; };
 		EE09BCC71E2D027A0004D6C2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE09BCC61E2D027A0004D6C2 /* Info.plist */; };
+		EEBFDB651E30F023007DAA43 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFDB641E30F023007DAA43 /* GroupCell.swift */; };
 		EEC32D701E295B4400D76EBC /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC32D6F1E295B4400D76EBC /* Goal.swift */; };
 		EEC32D721E295DCE00D76EBC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC32D711E295DCE00D76EBC /* User.swift */; };
 		EED0DFC11E250ADA00F33D32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED0DFC01E250ADA00F33D32 /* AppDelegate.swift */; };
@@ -25,6 +26,7 @@
 		EED9BB171E2E5BD100D2668D /* DESIGN.md in Sources */ = {isa = PBXBuildFile; fileRef = EED9BB141E2E5BD100D2668D /* DESIGN.md */; };
 		EED9BB181E2E5BD100D2668D /* PROCESS.md in Sources */ = {isa = PBXBuildFile; fileRef = EED9BB151E2E5BD100D2668D /* PROCESS.md */; };
 		EED9BB191E2E5BD100D2668D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EED9BB161E2E5BD100D2668D /* README.md */; };
+		EED9BB1B1E30DD6100D2668D /* DetailsGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED9BB1A1E30DD6100D2668D /* DetailsGroupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,7 @@
 		EE09BCC21E2CF86C0004D6C2 /* GoalsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsCell.swift; sourceTree = "<group>"; };
 		EE09BCC41E2D01AE0004D6C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE09BCC61E2D027A0004D6C2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEBFDB641E30F023007DAA43 /* GroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		EEC32D6F1E295B4400D76EBC /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		EEC32D711E295DCE00D76EBC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EEC32D771E2CCD5B00D76EBC /* GOals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GOals.entitlements; sourceTree = "<group>"; };
@@ -50,6 +53,7 @@
 		EED9BB141E2E5BD100D2668D /* DESIGN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DESIGN.md; sourceTree = "<group>"; };
 		EED9BB151E2E5BD100D2668D /* PROCESS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = PROCESS.md; sourceTree = "<group>"; };
 		EED9BB161E2E5BD100D2668D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EED9BB1A1E30DD6100D2668D /* DetailsGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsGroupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,7 @@
 			children = (
 				EED0DFC21E250ADA00F33D32 /* LoginViewController.swift */,
 				EED0DFD61E2784B800F33D32 /* GoalsViewController.swift */,
+				EED9BB1A1E30DD6100D2668D /* DetailsGroupViewController.swift */,
 				EED0DFD81E27B40400F33D32 /* RankingViewController.swift */,
 				EED0DFDA1E27B41900F33D32 /* DetailViewController.swift */,
 			);
@@ -99,6 +104,7 @@
 				EED9BB121E2E59ED00D2668D /* Group.swift */,
 				EEC32D711E295DCE00D76EBC /* User.swift */,
 				EE09BCC21E2CF86C0004D6C2 /* GoalsCell.swift */,
+				EEBFDB641E30F023007DAA43 /* GroupCell.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -297,10 +303,12 @@
 			files = (
 				EEC32D701E295B4400D76EBC /* Goal.swift in Sources */,
 				EED0DFC31E250ADA00F33D32 /* LoginViewController.swift in Sources */,
+				EED9BB1B1E30DD6100D2668D /* DetailsGroupViewController.swift in Sources */,
 				EED9BB131E2E59ED00D2668D /* Group.swift in Sources */,
 				EED0DFC11E250ADA00F33D32 /* AppDelegate.swift in Sources */,
 				EED9BB171E2E5BD100D2668D /* DESIGN.md in Sources */,
 				EE09BCC31E2CF86C0004D6C2 /* GoalsCell.swift in Sources */,
+				EEBFDB651E30F023007DAA43 /* GroupCell.swift in Sources */,
 				EED9BB191E2E5BD100D2668D /* README.md in Sources */,
 				EED9BB181E2E5BD100D2668D /* PROCESS.md in Sources */,
 				EEC32D721E295DCE00D76EBC /* User.swift in Sources */,

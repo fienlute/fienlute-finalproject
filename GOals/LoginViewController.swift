@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       //background
+       // Set background to mountains.
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
         
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
@@ -90,6 +90,14 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 
+//    // MARK: Navigation
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        super.prepare(for: segue, sender: sender)
+//        let navVc = segue.destination as! UINavigationController // 1
+//        let DetailViewController = navVc.viewControllers.first as! DetailViewController // 2
+//        
+//        DetailViewController.nameUser.text = textFieldLoginEmail?.text // 3
+//    }
 }
 
 
