@@ -17,26 +17,22 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
 
     
     // MARK: Properties
-//    var groupRef: FIRDatabaseReference?
-//    private lazy var goalRef: FIRDatabaseReference = self.groupRef!.child("goals")
+  
+//    private var newGoalRefHandle: FIRDatabaseHandle?
+//    private var updatedGoalRefHandle: FIRDatabaseHandle?
     
-    
-    var groupRef = FIRDatabase.database().reference().child("goals")
-    private var newGoalRefHandle: FIRDatabaseHandle?
-    private var updatedGoalRefHandle: FIRDatabaseHandle?
-    var group: Group? {
-        didSet {
-            title = group?.name
-        }
-    }
+    // var groupRef: FIRDatabaseReference?
+    var groupRef = FIRDatabase.database().reference().child("group")
+
     var goals = [Goal]()
-    
+    private lazy var goalRef: FIRDatabaseReference = self.groupRef.child("goals")
     let listToUsers = "ListToUsers"
     var items: [Goal] = []
     var user = User(authData: (FIRAuth.auth()?.currentUser)!)
     var groupItems: [Group] = []
     var userCountBarButtonItem: UIBarButtonItem!
     var goal: Goal!
+    let usersRef = FIRDatabase.database().reference(withPath: "online")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,9 +49,18 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
                 newItems.append(goal)
             }
             
-            
+            // to know if someone is online
+            FIRAuth.auth()!.addStateDidChangeListener { auth, user in
+                guard let user = user else { return }
+                self.user = User(authData: user)
+                let currentUserRef = self.usersRef.child(self.user.uid)
+                currentUserRef.setValue(self.user.email)
+                currentUserRef.onDisconnectRemoveValue()
+            }
+    
             self.items = newItems
            // self.tableView.reloadData()
+
         })
 
     }
@@ -109,7 +114,9 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
 //            "completed": toggledCompletion
 //            ])
 //    }
-//    
+    
+    
+    
     // MARK: methods
     @IBAction func addGoal(_ sender: Any) {
         let alert = UIAlertController(title: "Goal",
@@ -120,7 +127,7 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
                                            style: .default) { action in
                                             let goalField = alert.textFields![0].text
                                             let points: Int = Int(alert.textFields![1].text!)!
-                                            let itemRef = self.groupRef.childByAutoId()
+                                            //let itemRef = self.groupRef.childByAutoId()
                                             
                                             print(goalField!)
                                             print(User(authData: (FIRAuth.auth()?.currentUser)!))
@@ -129,14 +136,28 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
                                             let goalItem = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points)
                                             
                                         
+//                                            let goalItemRef = self.itemRef.child(goalField.lowercased())
+//                                            itemRef.setValue(goalItem)
+//
+//                                            self.groupRef = self.groupRef.child("goals")
+//                                        
+//                                            self.groupRef.setValue(goalItem.toAnyObject())
+//
                                             
-                                            itemRef.setValue(goalItem)
-
-                                            self.groupRef = self.groupRef.child("goals")
-                                        
-                                            self.groupRef.setValue(goalItem.toAnyObject())
+                                            let goal = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points)
                                             
-                                            self.goals.append(self.goal)
+                                            self.items.append(goal)
+// maakt nieuwe items op het level van 'goals' dus kan gebruikt worden als groepnaam ipv goals, binnen groepen --> group
+                                            
+                                            
+//                                            let goalRef = self.groupRef.child(goalField!)
+//                                            
+//                                            goalRef.setValue(goalItem.toAnyObject())
+                                            
+                                            let itemRef = self.goalRef.childByAutoId() // 1
+                                            
+                                            itemRef.setValue(goalItem.toAnyObject()) // 3
+                                            
                                             
         }
         

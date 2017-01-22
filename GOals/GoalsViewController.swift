@@ -38,7 +38,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //    
     
     
-    
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +72,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    @IBAction func LogoutDidTouch(_ sender: Any) {
+        @IBAction func LogoutDidTouch(_ sender: Any) {
             let firebaseAuth = FIRAuth.auth()
             do {
                 try firebaseAuth?.signOut()
@@ -138,8 +137,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         })
     }
-    
-
     
 
     
