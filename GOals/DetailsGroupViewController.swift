@@ -115,8 +115,6 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
 //            ])
 //    }
     
-    
-    
     // MARK: methods
     @IBAction func addGoal(_ sender: Any) {
         let alert = UIAlertController(title: "Goal",

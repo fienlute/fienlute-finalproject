@@ -11,8 +11,7 @@ import Firebase
 
 class LoginViewController: UIViewController {
 
-    
-    // let ref = FIRDatabase.database().reference(withPath: "Users")
+    var ref: FIRDatabaseReference!
     let loginToList = "LoginToList"
 
     @IBOutlet weak var textFieldLoginEmail: UITextField!
@@ -21,10 +20,12 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ref =  FIRDatabase.database().reference(withPath: "Users")
+            
        // Set background to mountains.
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
         
-        FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
+            FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
             if user != nil {
                 self.performSegue(withIdentifier: self.loginToList, sender: nil)
             }
@@ -56,14 +57,13 @@ class LoginViewController: UIViewController {
                     FIRAuth.auth()!.signIn(withEmail: self.textFieldLoginEmail.text!,
                                            password: self.textFieldLoginPassword.text!)
                     
-//                    let userRef = self.ref.child((user.uid))
-//                    userRef.setValue(user.toAnyObject())
-//                    
+                    let userRef = self.ref.child((user.uid))
+                    userRef.setValue(user.toAnyObject())
+
                 } else {
                     self.errorAlert(title: "Signup failed", alertCase: "Enter a valid email adress, password and group")
                 }
             }
-            
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -88,30 +88,30 @@ class LoginViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        override func didReceiveMemoryWarning() {
+            super.didReceiveMemoryWarning()
+            // Dispose of any resources that can be recreated.
+        }
     }
-}
 
-extension LoginViewController: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == textFieldLoginEmail {
-            textFieldLoginPassword.becomeFirstResponder()
+    extension LoginViewController: UITextFieldDelegate {
+        
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            if textField == textFieldLoginEmail {
+                textFieldLoginPassword.becomeFirstResponder()
+            }
+            if textField == textFieldLoginPassword {
+                textField.resignFirstResponder()
+            }
+            return true
         }
-        if textField == textFieldLoginPassword {
-            textField.resignFirstResponder()
-        }
-        return true
-    }
-    
+        
     
     func errorAlert(title: String, alertCase: String) {
     let alert = UIAlertController(title: title, message: alertCase , preferredStyle: UIAlertControllerStyle.alert)
     alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
     self.present(alert, animated: true, completion: nil)
-}
+    }
 
     
 

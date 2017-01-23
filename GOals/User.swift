@@ -14,7 +14,7 @@ struct User {
     let uid: String
     let email: String
     var group: String
-    let points: Int
+    var points: Int
     let key: String
     let ref: FIRDatabaseReference?
     
