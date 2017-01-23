@@ -12,6 +12,7 @@
 		EE09BCC51E2D01AE0004D6C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE09BCC41E2D01AE0004D6C2 /* GoogleService-Info.plist */; };
 		EE09BCC71E2D027A0004D6C2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE09BCC61E2D027A0004D6C2 /* Info.plist */; };
 		EEBFDB651E30F023007DAA43 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFDB641E30F023007DAA43 /* GroupCell.swift */; };
+		EEBFDB6B1E361E14007DAA43 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFDB6A1E361E14007DAA43 /* DataService.swift */; };
 		EEC32D701E295B4400D76EBC /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC32D6F1E295B4400D76EBC /* Goal.swift */; };
 		EEC32D721E295DCE00D76EBC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC32D711E295DCE00D76EBC /* User.swift */; };
 		EED0DFC11E250ADA00F33D32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED0DFC01E250ADA00F33D32 /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 		EE09BCC41E2D01AE0004D6C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE09BCC61E2D027A0004D6C2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEBFDB641E30F023007DAA43 /* GroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		EEBFDB6A1E361E14007DAA43 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		EEC32D6F1E295B4400D76EBC /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		EEC32D711E295DCE00D76EBC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EEC32D771E2CCD5B00D76EBC /* GOals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GOals.entitlements; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		EEC32D7B1E2CCF9400D76EBC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EEBFDB6A1E361E14007DAA43 /* DataService.swift */,
 				EEC32D6F1E295B4400D76EBC /* Goal.swift */,
 				EED9BB121E2E59ED00D2668D /* Group.swift */,
 				EEC32D711E295DCE00D76EBC /* User.swift */,
@@ -310,6 +313,7 @@
 				EE09BCC31E2CF86C0004D6C2 /* GoalsCell.swift in Sources */,
 				EEBFDB651E30F023007DAA43 /* GroupCell.swift in Sources */,
 				EED9BB191E2E5BD100D2668D /* README.md in Sources */,
+				EEBFDB6B1E361E14007DAA43 /* DataService.swift in Sources */,
 				EED9BB181E2E5BD100D2668D /* PROCESS.md in Sources */,
 				EEC32D721E295DCE00D76EBC /* User.swift in Sources */,
 				EED0DFD71E2784B800F33D32 /* GoalsViewController.swift in Sources */,

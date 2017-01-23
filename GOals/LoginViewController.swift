@@ -11,6 +11,8 @@ import Firebase
 
 class LoginViewController: UIViewController {
 
+    
+    // let ref = FIRDatabase.database().reference(withPath: "Users")
     let loginToList = "LoginToList"
 
     @IBOutlet weak var textFieldLoginEmail: UITextField!
@@ -28,6 +30,7 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
     @IBAction func loginDidTouch(_ sender: AnyObject) {
         FIRAuth.auth()!.signIn(withEmail: textFieldLoginEmail.text!,
                                password: textFieldLoginPassword.text!)
@@ -37,21 +40,30 @@ class LoginViewController: UIViewController {
         let alert = UIAlertController(title: "Register",
                                       message: "Register",
                                       preferredStyle: .alert)
-        
+    
         let saveAction = UIAlertAction(title: "Save",
            style: .default) { action in
             let emailField = alert.textFields![0]
             let passwordField = alert.textFields![1]
+            let groupField = alert.textFields![2]
             
             FIRAuth.auth()!.createUser(withEmail: emailField.text!,
                                        password: passwordField.text!) { user, error in
                 if error == nil {
+                    
+                    let user = User(uid: (user?.uid)!, email: emailField.text!, group: groupField.text!, points: 0)
+                    
                     FIRAuth.auth()!.signIn(withEmail: self.textFieldLoginEmail.text!,
                                            password: self.textFieldLoginPassword.text!)
+                    
+//                    let userRef = self.ref.child((user.uid))
+//                    userRef.setValue(user.toAnyObject())
+//                    
                 } else {
-                    print("ERROR: \(error)")
+                    self.errorAlert(title: "Signup failed", alertCase: "Enter a valid email adress, password and group")
                 }
             }
+            
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -64,6 +76,10 @@ class LoginViewController: UIViewController {
         alert.addTextField { textPassword in
             textPassword.isSecureTextEntry = true
             textPassword.placeholder = "Enter your password"
+        }
+        
+        alert.addTextField { textGroup in
+            textGroup.placeholder = "Add a group/Join a group"
         }
         
         alert.addAction(saveAction)
@@ -89,6 +105,15 @@ extension LoginViewController: UITextFieldDelegate {
         }
         return true
     }
+    
+    
+    func errorAlert(title: String, alertCase: String) {
+    let alert = UIAlertController(title: title, message: alertCase , preferredStyle: UIAlertControllerStyle.alert)
+    alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
+    self.present(alert, animated: true, completion: nil)
+}
+
+    
 
 //    // MARK: Navigation
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

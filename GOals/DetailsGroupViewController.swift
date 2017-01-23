@@ -127,26 +127,22 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
                                            style: .default) { action in
                                             let goalField = alert.textFields![0].text
                                             let points: Int = Int(alert.textFields![1].text!)!
+                                            let group = alert.textFields![2].text
                                             //let itemRef = self.groupRef.childByAutoId()
                                             
-                                            print(goalField!)
-                                            print(User(authData: (FIRAuth.auth()?.currentUser)!))
-                                            print(points)
-                                            
-                                            let goalItem = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points)
-                                            
+                                            let goalItem = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points, group: self.user.group)
                                         
 //                                            let goalItemRef = self.itemRef.child(goalField.lowercased())
 //                                            itemRef.setValue(goalItem)
 //
 //                                            self.groupRef = self.groupRef.child("goals")
-//                                        
-//                                            self.groupRef.setValue(goalItem.toAnyObject())
-//
                                             
-                                            let goal = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points)
+//  self.groupRef.setValue(goalItem.toAnyObject())
+
+                                            let goal = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points, group: self.user.group)
                                             
                                             self.items.append(goal)
+                                            
 // maakt nieuwe items op het level van 'goals' dus kan gebruikt worden als groepnaam ipv goals, binnen groepen --> group
                                             
                                             
@@ -171,7 +167,7 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
                 alert.addTextField { textPoints in
                     textPoints.placeholder = "How many points is this worth?"
                 }
-                
+        
                 alert.addAction(saveAction)
                 alert.addAction(cancelAction)
                 
