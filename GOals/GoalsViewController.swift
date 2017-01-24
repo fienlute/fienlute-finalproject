@@ -16,21 +16,13 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: Properties
     var senderDisplayName: String?
-
-    private lazy var ref: FIRDatabaseReference = FIRDatabase.database().reference().child("goals")
-    private var refHandle: FIRDatabaseHandle?
-    
     var goalRef: FIRDatabaseReference!
+    let usersRef = FIRDatabase.database().reference(withPath: "online")
     
     var goals = [Goal]()
-//    private lazy var goalRef: FIRDatabaseReference = self.ref.child("goals")
     let listToUsers = "ListToUsers"
     var items: [Goal] = []
-    // var user = User(authData: (FIRAuth.auth()?.currentUser)!)
-    var groupItems: [Group] = []
-    var userCountBarButtonItem: UIBarButtonItem!
     var goal: Goal!
-    let usersRef = FIRDatabase.database().reference(withPath: "online")
     var user: User!
     
     // MARK: View Lifecycle
@@ -44,7 +36,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         title = "goals"
         
         // Put goal into array. (works)
-        self.ref.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+        self.goalRef.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
             var newItems: [Goal] = []
             for item in snapshot.children {
                 let goal = Goal(snapshot: item as! FIRDataSnapshot)
@@ -73,17 +65,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // MARK :Actions
-//    @IBAction func createGroup(_ sender: Any) {
-//        if let name = newGroupTextField?.text { // 1
-//            let newref = ref.childByAutoId() // 2
-//            let groupItem = [ // 3
-//                "name": name
-//            ]
-//            newref.setValue(groupItem) // 4
-//        }
-//    }
-    
-    
+
     @IBAction func addGoalDidTouch(_ sender: Any) {
         let alert = UIAlertController(title: "Goal",
                                       message: "Add a new goal",
@@ -93,32 +75,14 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                        style: .default) { action in
                                         let goalField = alert.textFields![0].text
                                         let points: Int = Int(alert.textFields![1].text!)!
-                                        //let itemRef = self.ref.childByAutoId()
-                                        
+ 
                                         let goalItem = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points, group: self.user.group)
+
+                                        self.items.append(goalItem)
                                         
-                                        //                                            let goalItemRef = self.itemRef.child(goalField.lowercased())
-                                        //                                            itemRef.setValue(goalItem)
-                                        //
-                                        //                                            self.ref = self.ref.child("goals")
+                                        let itemRef = self.goalRef.childByAutoId() // 1
                                         
-                                        //  self.ref.setValue(goalItem.toAnyObject())
-                                        
-                                        let goal = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points, group: self.user.group)
-                                        
-                                        self.items.append(goal)
-                                        
-                                        // maakt nieuwe items op het level van 'goals' dus kan gebruikt worden als groepnaam ipv goals, binnen groepen --> group
-                                        
-                                        
-                                        let goalRef = self.ref.child(goalField!)
-                                
-                                        goalRef.setValue(goalItem.toAnyObject())
-                                        
-                                        let itemRef = goalRef.childByAutoId() // 1
-                                        
-                                        itemRef.setValue(goalItem.toAnyObject()) // 3
-                                        
+                                        itemRef.setValue(goalItem.toAnyObject())
                                         
         }
         
@@ -149,6 +113,18 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print ("Error signing out: %@", signOutError)
         }
     }
+    
+    func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
+        if !isCompleted {
+            cell.accessoryType = .none
+            cell.textLabel?.textColor = UIColor.black
+            cell.detailTextLabel?.textColor = UIColor.black
+        } else {
+            cell.accessoryType = .checkmark
+            cell.textLabel?.textColor = UIColor.gray
+            cell.detailTextLabel?.textColor = UIColor.gray
+        }
+    }
 
     // MARK: UITableView Delegate methods
     
@@ -170,21 +146,20 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 1
+
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        // 2
+
         let goal = items[indexPath.row]
-        // 3
+
         let toggledCompletion = !goal.completed
-        // 4
+
         toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-        // 5
+
         goal.ref?.updateChildValues([
             "completed": toggledCompletion
             ])
     }
 
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let goal = items[indexPath.row]
@@ -192,43 +167,4 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
-        if !isCompleted {
-            cell.accessoryType = .none
-            cell.textLabel?.textColor = UIColor.black
-            cell.detailTextLabel?.textColor = UIColor.black
-        } else {
-            cell.accessoryType = .checkmark
-            cell.textLabel?.textColor = UIColor.gray
-            cell.detailTextLabel?.textColor = UIColor.gray
-        }
-    }
-    
-
-
-
-    // MARK: UITableViewDelegate
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if indexPath.section == Section.currentGroupsSection.rawValue {
-//            let group = groups[(indexPath as NSIndexPath).row]
-//            self.performSegue(withIdentifier: "showGoals", sender: group)
-//        }
-//    }
-    
-    // MARK: Firebase related methods
-//    private func observeGroups() {
-//        // Use the observe method to listen for new
-//        // channels being written to the Firebase DB
-//        refHandle = ref.observe(.childAdded, with: { (snapshot) -> Void in // 1
-//            let groupData = snapshot.value as! Dictionary<String, AnyObject> // 2
-//            let id = snapshot.key
-//            if let name = groupData["name"] as! String!, name.characters.count > 0 { // 3
-//                self.goals.append(Group(id: id, name: name))
-//                self.tableView.reloadData()
-//            } else {
-//                print("Error! Could not decode channel data")
-//            }
-//        })
-//    }
-
 }
