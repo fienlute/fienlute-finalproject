@@ -46,4 +46,8 @@ Vandaag hebben we de styleguide afgemaakt. Verder heb ik gezorgd dat er groepen 
 Vandaag heb ik een aantal error opgelost    
 
 #week 3 
-##maandag 
+##maandag 23 januari 
+Vandaag heb ik de user struct en de inlogviewcontroller aangepast zodat de user ook in de database + extra info wordt opgeslagen.
+
+## dinsdag 24 januari 
+Nu wordt de user helemaal goed opgeslagen
