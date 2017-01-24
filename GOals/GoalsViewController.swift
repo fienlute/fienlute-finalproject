@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -18,12 +19,17 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var senderDisplayName: String?
     var goalRef: FIRDatabaseReference!
     let usersRef = FIRDatabase.database().reference(withPath: "online")
-    
     var goals = [Goal]()
     let listToUsers = "ListToUsers"
     var items: [Goal] = []
     var goal: Goal!
+    
+    let currentUsersRef = FIRDatabase.database().reference(withPath: "Users")
+
     var user: User!
+    
+    var currentUserObject: [User] = []
+
     
     // MARK: View Lifecycle
     override func viewDidLoad() {
@@ -50,13 +56,30 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let currentUserRef = self.usersRef.child(self.user.uid)
                 currentUserRef.setValue(self.user.email)
                 currentUserRef.onDisconnectRemoveValue()
+        
             }
             
             self.items = newItems
             self.tableView.reloadData()
             
         })
+        
+        // currentUsersRef
+        
+        
 
+        
+        //currentUsersRef.observe(.value, with: { snapshot in
+        //    var newCurrentUser: [User] = []
+            
+        //    for item in snapshot.children {
+        //            let userItem = User(snapshot: item as! FIRDataSnapshot)
+        //        print("USERITEM \(userItem)")
+                    //newCurrentUser.append(userItem)
+         //   }
+            //self.currentUser = newCurrentUser.first!
+            //print("GROUP: \(self.currentUser.group)")
+       // })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,12 +94,25 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                       message: "Add a new goal",
                                       preferredStyle: .alert)
         
+        var group: String = ""
+        
+        let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()!.currentUser?.uid)!)
+        currentUser.observeSingleEvent(of: .value, with: { snapshot in
+            
+            
+            let value = snapshot.value as? NSDictionary
+            group = value?["group"] as! String
+            
+            print("Group: \(group)")
+            
+        })
+        
         let saveAction = UIAlertAction(title: "Save",
                                        style: .default) { action in
                                         let goalField = alert.textFields![0].text
                                         let points: Int = Int(alert.textFields![1].text!)!
- 
-                                        let goalItem = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points, group: self.user.group)
+                                        
+                                        let goalItem = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points, group: group)
 
                                         self.items.append(goalItem)
                                         
@@ -158,6 +194,11 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         goal.ref?.updateChildValues([
             "completed": toggledCompletion
             ])
+        
+//        var currentUser = User(authData: user)
+//        
+//        var currentUserpoints = user.points + goal.points
+        
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

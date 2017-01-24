@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseAuth
 
 struct User {
     
@@ -27,7 +28,7 @@ struct User {
         points = 0
     }
     
-    init(uid: String, email: String, group: String,points: Int, key: String = "") {
+    init(uid: String, email: String, group: String, points: Int, key: String = "") {
         self.uid = uid
         self.email = email
         self.group = group
