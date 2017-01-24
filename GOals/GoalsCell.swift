@@ -9,10 +9,11 @@
 import UIKit
 
 class GoalsCell: UITableViewCell {
-//
-//    @IBOutlet weak var labelGoal: UILabel!
-//    @IBOutlet weak var labelUser: UILabel!
-//    @IBOutlet weak var labelPoints: UILabel!
+
+    
+    @IBOutlet weak var goalLabel: UILabel!
+    @IBOutlet weak var addedByLabel: UILabel!
+    @IBOutlet weak var pointsLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

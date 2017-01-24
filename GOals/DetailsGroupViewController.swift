@@ -151,8 +151,6 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
                                             let itemRef = self.goalRef.childByAutoId() // 1
                                             
                                             itemRef.setValue(goalItem.toAnyObject()) // 3
-                                            
-                                            
         }
         
                 let cancelAction = UIAlertAction(title: "Cancel",

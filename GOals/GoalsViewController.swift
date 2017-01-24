@@ -22,18 +22,17 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var goalRef: FIRDatabaseReference!
     
-//    var ref = FIRDatabase.database().reference().child(withPath: "group")
-    
     var goals = [Goal]()
 //    private lazy var goalRef: FIRDatabaseReference = self.ref.child("goals")
     let listToUsers = "ListToUsers"
     var items: [Goal] = []
-    var user = User(authData: (FIRAuth.auth()?.currentUser)!)
+    // var user = User(authData: (FIRAuth.auth()?.currentUser)!)
     var groupItems: [Group] = []
     var userCountBarButtonItem: UIBarButtonItem!
     var goal: Goal!
     let usersRef = FIRDatabase.database().reference(withPath: "online")
-
+    var user: User!
+    
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +93,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                        style: .default) { action in
                                         let goalField = alert.textFields![0].text
                                         let points: Int = Int(alert.textFields![1].text!)!
-                                        let group = alert.textFields![2].text
                                         //let itemRef = self.ref.childByAutoId()
                                         
                                         let goalItem = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points, group: self.user.group)
@@ -146,32 +144,46 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let firebaseAuth = FIRAuth.auth()
         do {
             try firebaseAuth?.signOut()
-            self.performSegue(withIdentifier: "toLogin", sender: nil)
+            // self.performSegue(withIdentifier: "toLogin", sender: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
     }
 
-    // MARK: UITableViewDataSource
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
+    // MARK: UITableView Delegate methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GoalsCell
         let goal = items[indexPath.row]
         
-        //        cell.textLabel?.text = goal.name
-        //        cell.detailTextLabel?.text = goal.addedByUser
-        
-        //        toggleCellCheckbox(cell, isCompleted: goal.completed)
+        cell.goalLabel.text = goal.name
+        cell.addedByLabel.text = goal.addedByUser
+        cell.pointsLabel.text = String(goal.points)
+
+        toggleCellCheckbox(cell, isCompleted: goal.completed)
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 1
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        // 2
+        let goal = items[indexPath.row]
+        // 3
+        let toggledCompletion = !goal.completed
+        // 4
+        toggleCellCheckbox(cell, isCompleted: toggledCompletion)
+        // 5
+        goal.ref?.updateChildValues([
+            "completed": toggledCompletion
+            ])
+    }
+
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -179,21 +191,21 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             goal.ref?.removeValue()
         }
     }
+    
+    func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
+        if !isCompleted {
+            cell.accessoryType = .none
+            cell.textLabel?.textColor = UIColor.black
+            cell.detailTextLabel?.textColor = UIColor.black
+        } else {
+            cell.accessoryType = .checkmark
+            cell.textLabel?.textColor = UIColor.gray
+            cell.detailTextLabel?.textColor = UIColor.gray
+        }
+    }
+    
 
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        // 1
-//        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-//        // 2
-//        let goal = items[indexPath.row]
-//        // 3
-//        let toggledCompletion = !goal.completed
-//        // 4
-//        toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-//        // 5
-//        goal.goalRef?.updateChildValues([
-//            "completed": toggledCompletion
-//            ])
-//    }
+
 
     // MARK: UITableViewDelegate
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

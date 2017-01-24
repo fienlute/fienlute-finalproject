@@ -13,7 +13,8 @@ class LoginViewController: UIViewController {
 
     var ref: FIRDatabaseReference!
     let loginToList = "LoginToList"
-
+    //let defaults = UserDefaults.standard
+    
     @IBOutlet weak var textFieldLoginEmail: UITextField!
     @IBOutlet weak var textFieldLoginPassword: UITextField!
     
@@ -21,12 +22,13 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         ref =  FIRDatabase.database().reference(withPath: "Users")
-            
        // Set background to mountains.
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
         
-            FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
+        FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
+    
             if user != nil {
+    
                 self.performSegue(withIdentifier: self.loginToList, sender: nil)
             }
         }
@@ -34,7 +36,13 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginDidTouch(_ sender: AnyObject) {
         FIRAuth.auth()!.signIn(withEmail: textFieldLoginEmail.text!,
-                               password: textFieldLoginPassword.text!)
+                               password: textFieldLoginPassword.text!) {
+        (user, error) in
+        if error != nil {
+            self.errorAlert(title: "Login Failed", alertCase: "error")
+            }
+        //self.performSegue(withIdentifier: "LoginToList", sender: nil)
+        }
     }
 
     @IBAction func signupDidTouch(_ sender: AnyObject) {
@@ -105,8 +113,7 @@ class LoginViewController: UIViewController {
             }
             return true
         }
-        
-    
+
     func errorAlert(title: String, alertCase: String) {
     let alert = UIAlertController(title: title, message: alertCase , preferredStyle: UIAlertControllerStyle.alert)
     alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
