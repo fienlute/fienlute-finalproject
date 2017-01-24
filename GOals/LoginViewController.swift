@@ -115,11 +115,11 @@ class LoginViewController: UIViewController {
 
     
 
-//    // MARK: Navigation
+    // MARK: Navigation
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        super.prepare(for: segue, sender: sender)
 //        let navVc = segue.destination as! UINavigationController // 1
-//        let DetailViewController = navVc.viewControllers.first as! DetailViewController // 2
+//        let GoalsViewController = navVc.viewControllers.first as! GoalsViewController // 2
 //        
 //        DetailViewController.nameUser.text = textFieldLoginEmail?.text // 3
 //    }

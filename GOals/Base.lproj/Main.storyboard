@@ -89,21 +89,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyF-zU-dIH">
+                                <rect key="frame" x="335" y="27" width="24" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="+"/>
+                                <connections>
+                                    <action selector="addGoalDidTouch:" destination="Vgc-Ua-vtC" eventType="touchUpInside" id="Rdt-nb-KSf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bqj-YJ-DVj">
+                                <rect key="frame" x="16" y="20" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="LogoutDidTouch:" destination="Vgc-Ua-vtC" eventType="touchUpInside" id="edi-0e-SNP"/>
+                                    <segue destination="BYZ-38-t0r" kind="push" identifier="toLogin" id="Gi4-9p-xLr"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="tableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kP4-MI-uwt">
-                                <rect key="frame" x="16" y="107" width="343" height="503"/>
+                                <rect key="frame" x="16" y="50" width="343" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QyF-zU-dIH">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="+"/>
-                                    <connections>
-                                        <action selector="addGoalDidTouch:" destination="Vgc-Ua-vtC" eventType="touchUpInside" id="Rdt-nb-KSf"/>
-                                    </connections>
-                                </button>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExistingGroup" textLabel="EEr-u1-A3t" rowHeight="56" style="IBUITableViewCellStyleDefault" id="drw-sh-dWh" userLabel="cell" customClass="GoalsCell" customModule="GOals" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="58" width="343" height="56"/>
+                                        <rect key="frame" x="0.0" y="28" width="343" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="drw-sh-dWh" id="h5k-Sv-Qn3">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="55"/>
@@ -126,15 +135,6 @@
                                     <outlet property="delegate" destination="Vgc-Ua-vtC" id="Q1N-EC-lFQ"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bqj-YJ-DVj">
-                                <rect key="frame" x="16" y="20" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Logout"/>
-                                <connections>
-                                    <action selector="LogoutDidTouch:" destination="Vgc-Ua-vtC" eventType="touchUpInside" id="edi-0e-SNP"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="O5M-fO-ClC"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -309,6 +309,7 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="kYW-gk-FH1"/>
                     <connections>
                         <outlet property="textFieldLoginEmail" destination="k7B-X1-o7b" id="Nr3-Vj-1t9"/>
                         <outlet property="textFieldLoginPassword" destination="KbY-BY-ZTT" id="5HQ-ym-kWz"/>

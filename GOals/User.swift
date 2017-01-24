@@ -51,6 +51,8 @@ struct User {
         return [
             "uid": uid,
             "email": email,
+            "group": group,
+            "points": points
         ]
     }
 }

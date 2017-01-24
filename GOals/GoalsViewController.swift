@@ -62,7 +62,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             self.items = newItems
-            // self.tableView.reloadData()
+            self.tableView.reloadData()
             
         })
 
@@ -146,6 +146,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let firebaseAuth = FIRAuth.auth()
         do {
             try firebaseAuth?.signOut()
+            self.performSegue(withIdentifier: "toLogin", sender: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }

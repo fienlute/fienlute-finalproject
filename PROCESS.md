@@ -43,7 +43,7 @@ We hebben met ons groepje aan een stile guide gewerkt. Ik heb verder geprobeerd 
 Vandaag hebben we de styleguide afgemaakt. Verder heb ik gezorgd dat er groepen aangemaakt kunnen worden waarbinnen er doelen kunnen worden gemaakt. Ik durf op dit moment niet te comitten omdat ik heel veel veranderd heb en nog niet tevreden ben.
   
 ##vrijdag 20 januari
-
+Vandaag heb ik een aantal error opgelost    
 
 #week 3 
 ##maandag 
