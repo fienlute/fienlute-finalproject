@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var nameUser: UILabel!
+    
+    @IBOutlet weak var pointsUser: UILabel!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -21,6 +25,23 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var group: String = ""
+        var email: String = ""
+        var points: String = ""
+        
+        let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()!.currentUser?.uid)!)
+        currentUser.observeSingleEvent(of: .value, with: { snapshot in
+            
+            let value = snapshot.value as? NSDictionary
+            email = value?["email"] as! String
+            // points = value?["points"] as! String
+            
+            self.nameUser.text! = email
+            self.pointsUser.text! = points
+        })
+        
+        
         
         // set background mountains
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)

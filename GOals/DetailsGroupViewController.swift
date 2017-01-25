@@ -30,7 +30,6 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
     let listToUsers = "ListToUsers"
     var items: [Goal] = []
     var user = User(authData: (FIRAuth.auth()?.currentUser)!)
-    var groupItems: [Group] = []
     var userCountBarButtonItem: UIBarButtonItem!
     var goal: Goal!
     let usersRef = FIRDatabase.database().reference(withPath: "online")

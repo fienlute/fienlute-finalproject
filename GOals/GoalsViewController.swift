@@ -17,74 +17,107 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: Properties
     var senderDisplayName: String?
-    var goalRef: FIRDatabaseReference!
+    // var goalRef: FIRDatabaseReference!
+    var goalRef =  FIRDatabase.database().reference(withPath: "goals")
     let usersRef = FIRDatabase.database().reference(withPath: "online")
+
     var goals = [Goal]()
     let listToUsers = "ListToUsers"
     var items: [Goal] = []
     var goal: Goal!
+    var currentGroup: String = ""
+    var currentUid: String = ""
+    var currentPoints: String = ""
+    var currentEmail: String = ""
     
     let currentUsersRef = FIRDatabase.database().reference(withPath: "Users")
-
+    //let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()!.currentUser?.uid)!)
     var user: User!
     
     var currentUserObject: [User] = []
+    // var groupRef = FIRDatabase.database().reference(withPath: "goals").child(goal.group)
 
-    
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        goalRef =  FIRDatabase.database().reference(withPath: "goals")
+        
         // Set background mountains.
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
 
         title = "goals"
         
-        // Put goal into array. (works)
-        self.goalRef.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
-            var newItems: [Goal] = []
-            for item in snapshot.children {
-                let goal = Goal(snapshot: item as! FIRDataSnapshot)
-                newItems.append(goal)
-            }
+        var group: String = ""
+
+        let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()!.currentUser?.uid)!)
+        currentUser.observeSingleEvent(of: .value, with: { snapshot in
             
-            // to know if someone is online
-            FIRAuth.auth()!.addStateDidChangeListener { auth, user in
-                guard let user = user else { return }
-                self.user = User(authData: user)
-                let currentUserRef = self.usersRef.child(self.user.uid)
-                currentUserRef.setValue(self.user.email)
-                currentUserRef.onDisconnectRemoveValue()
+            let value = snapshot.value as? NSDictionary
+            group = value?["group"] as! String
+
+            // print("Group: \(group)")
+            
+        })
+
+        // Put goal into array.
         
-            }
+        var currentGroupa: String = group
+
+        //        goalRef.queryOrdered(byChild: "group").queryEqual(toValue: "hoi").observeSingleEvent(of: .value, with:
+//            { (snapshot:FIRDataSnapshot) in
+            self.goalRef.queryOrdered(byChild: "group").observe(.value, with: { snapshot in
+                
+                var newItems: [Goal] = []
+                
+                for item in snapshot.children {
+                    let goalItem = Goal(snapshot: item as! FIRDataSnapshot)
+                    let goal = Goal(snapshot: item as! FIRDataSnapshot)
+                    newItems.append(goalItem)
+                }
+                
+                if snapshot.exists() {
+                    print(snapshot.value)
+                
+                } else {
+                    print("Group: \(group)")
+                    print("test2")
+                }
             
+                
+//
+                
+
+//            // self.goalRef.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+//
+//          //   to know if someone is online
+//            FIRAuth.auth()!.addStateDidChangeListener { auth, user in
+//                guard let user = user else { return }
+//                self.user = User(authData: user)
+//                let currentUserRef = self.usersRef.child(self.user.uid)
+//                currentUserRef.setValue(self.user.email)
+//                currentUserRef.onDisconnectRemoveValue()
+//            }
+//            
             self.items = newItems
             self.tableView.reloadData()
             
         })
-        
-        // currentUsersRef
-        
-        
 
-        
-        //currentUsersRef.observe(.value, with: { snapshot in
-        //    var newCurrentUser: [User] = []
-            
-        //    for item in snapshot.children {
-        //            let userItem = User(snapshot: item as! FIRDataSnapshot)
-        //        print("USERITEM \(userItem)")
-                    //newCurrentUser.append(userItem)
-         //   }
-            //self.currentUser = newCurrentUser.first!
-            //print("GROUP: \(self.currentUser.group)")
-       // })
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         // hide empty cells of tableview
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        retrieveUserData{(uid, email, group, points) in
+            self.currentUid = uid
+            self.currentEmail = email
+            self.currentGroup = group
+            self.currentPoints = String(points)
+
+        }
+        
     }
     
     // MARK :Actions
@@ -99,10 +132,9 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()!.currentUser?.uid)!)
         currentUser.observeSingleEvent(of: .value, with: { snapshot in
             
-            
             let value = snapshot.value as? NSDictionary
             group = value?["group"] as! String
-            
+
             print("Group: \(group)")
             
         })
@@ -139,7 +171,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         present(alert, animated: true, completion: nil)
 
     }
-    
+
     @IBAction func LogoutDidTouch(_ sender: Any) {
         let firebaseAuth = FIRAuth.auth()
         do {
@@ -160,6 +192,17 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.textLabel?.textColor = UIColor.gray
             cell.detailTextLabel?.textColor = UIColor.gray
         }
+    }
+    
+    func retrieveUserData(completionBlock : @escaping ((_ uid : String, _ email : String, _ group : String, _ points : Int)->Void)) {
+        goalRef.child(FIRAuth.auth()!.currentUser!.uid).observe(.value , with: {snapshot in
+            
+            if let userDict =  snapshot.value as? [String:AnyObject]  {
+                
+                completionBlock(userDict["uid"] as! String, userDict["email"] as! String, userDict["group"] as! String, userDict["points"] as! Int)
+            }
+        })
+        
     }
 
     // MARK: UITableView Delegate methods
@@ -194,11 +237,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         goal.ref?.updateChildValues([
             "completed": toggledCompletion
             ])
-        
-//        var currentUser = User(authData: user)
-//        
-//        var currentUserpoints = user.points + goal.points
-        
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -207,5 +245,5 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             goal.ref?.removeValue()
         }
     }
-    
+
 }
