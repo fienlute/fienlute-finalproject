@@ -10,10 +10,10 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class RankingViewController: UIViewController { //UITableViewDataSource, UITableViewDelegate {
+class RankingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-//    @IBOutlet weak var tableView: UITableView!
-//    
+    @IBOutlet weak var tableView: UITableView!
+ 
     let usersRef = FIRDatabase.database().reference(withPath: "Users")
     var user: User!
     var items: [User] = []
@@ -26,61 +26,71 @@ class RankingViewController: UIViewController { //UITableViewDataSource, UITable
         
         title = "ranking"
         
-        var group: String = ""
-        var email: String = ""
-        var points: String = ""
         
-        let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()!.currentUser?.uid)!)
+        // Puts users of group into array
+        let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
+        
         currentUser.observeSingleEvent(of: .value, with: { snapshot in
+            var group: String = ""
+            var name: String = ""
+            // var points: String = ""
             
             let value = snapshot.value as? NSDictionary
-            email = value?["email"] as! String
-            points = value?["points"] as! String
+            group = value?["group"] as! String
+            name = value?["email"] as! String
+
             
-            // print("Group: \(group)")
+            self.usersRef.queryOrdered(byChild: "group").queryEqual(toValue: group).observe(.value, with:
+                { (snapshot) in
+    
+                    var newItems: [User] = []
+                    
+                    for item in snapshot.children {
+                        
+                        let userItem = User(snapshot: item as! FIRDataSnapshot)
+                        newItems.append(userItem)
+                    }
+                    
+                    if snapshot.exists() {
+                        print(snapshot.value)
+                        print("Group: \(group)")
+                        
+                    } else {
+                        print("Group: \(group)")
+                        print("test2")
+                    }
+                    //
+                    self.items = newItems
+                    self.tableView.reloadData()
+                    
+            })
+            
             
         })
-
-//        // Puts users of group into array
-//        self.usersRef.queryOrdered(byChild: "points").observe(.value, with: { snapshot in
-//            
-//            var newItems: [User] = []
-//            var group = String()
-//            for item in snapshot.children {
-//                let user = User(snapshot: item as! FIRDataSnapshot)
-//                newItems.append(user)
-//                
-//                // for group in user.group {
-//               //     if group == (currentUser?.group)! {
-//                //        newItems.append(items)
-//               //     }
-//               // }
-//            }
-//            
-//            self.items = newItems
-//            self.tableView.reloadData()
-//            
-//        })
-//        
+        
     }
-//
-//
-//    
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-//    
-//
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // hide empty cells of tableview
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
     }
-    */
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RankingCell
+        let user = items[indexPath.row]
+        let points = user.points
+        
+
+        
+        cell.userRankingLabel.text = user.email
+        cell.userPointsLabel.text = String(points)
+        
+        return cell
+    }
 
 }
