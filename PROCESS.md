@@ -51,3 +51,9 @@ Vandaag heb ik de user struct en de inlogviewcontroller aangepast zodat de user 
 
 ## dinsdag 24 januari 
 Nu wordt de user helemaal goed opgeslagen
+
+## woensdag
+de current userdata wordt opgehaald uit firebase en vergeleken met de userdata van de goals
+
+## donderdag
+de doelen van de groep van de current user worden laten zien in de GoalsVC, de users van de groep worden laten zien in de RankingVC en de details van de current user worden laten zien in de DetailVC.
