@@ -59,7 +59,7 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
             }
     
             self.items = newItems
-           // self.tableView.reloadData()
+            //self.tableView.reloadData()
 
         })
 

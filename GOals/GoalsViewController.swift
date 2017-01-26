@@ -22,14 +22,20 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let usersRef = FIRDatabase.database().reference(withPath: "online")
     // let goalRef = FIRDatabase.database().reference().child("goals")
 
-
     var goals = [Goal]()
     let listToUsers = "ListToUsers"
     var items: [Goal] = []
     var goal: Goal!
     var user: User!
+    var group: String = ""
+    var name: String = ""
+    var pointsInt: Int = 0
+    var pointsString: String = ""
+    var userC: String = ""
     
     var currentUserObject: [User] = []
+    let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
+
 
     // MARK: View Lifecycle
     override func viewDidLoad() {
@@ -38,31 +44,24 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // Set background mountains.
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
-        title = "goals"
-
-        
-        
+        title = "Goals"
+ 
         print("UID:\(FIRAuth.auth()!.currentUser?.uid)")
-        let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
         
         currentUser.observeSingleEvent(of: .value, with: { snapshot in
-            var group: String = ""
-            var name: String = ""
-            // var points: String = ""
-            
-            let value = snapshot.value as? NSDictionary
-            group = value?["group"] as! String
-            name = value?["email"] as! String
-            // points = value?["points"] as! String
-            
-            // print("Group: \(group)")
-            
-        // Put goal into array.
 
-            self.goalRef.queryOrdered(byChild: "group").queryEqual(toValue: group).observe(.value, with:
-                { (snapshot) in
-    //            self.goalRef.queryOrdered(byChild: "group").observe(.value, with: { snapshot in
+            let value = snapshot.value as? NSDictionary
+            self.group = value?["group"] as! String
+            self.name = value?["email"] as! String
             
+            self.pointsInt = value?["points"] as! Int
+            self.pointsString = String(self.pointsInt)
+
+            // Put goal into array.
+
+            self.goalRef.queryOrdered(byChild: "group").queryEqual(toValue: self.group).observe(.value, with:
+                { (snapshot) in
+
                     var newItems: [Goal] = []
                     
                     for item in snapshot.children {
@@ -72,20 +71,18 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     }
                     
                     if snapshot.exists() {
-                        print(snapshot.value)
-                        print("Group: \(group)")
+                        // print(snapshot.value)
+                        print("Group: \(self.group)")
                     
                     } else {
-                        print("Group: \(group)")
+                        print("Group: \(self.group)")
                         print("test2")
                     }
-    //
+ 
                 self.items = newItems
                 self.tableView.reloadData()
                 
             })
-            
-
         })
     }
     
@@ -98,30 +95,33 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK :Actions
 
     @IBAction func addGoalDidTouch(_ sender: Any) {
+        
+        // print("Group: \(group)")
+        
+   
         let alert = UIAlertController(title: "Goal",
                                       message: "Add a new goal",
                                       preferredStyle: .alert)
         
-        var group: String = ""
-        var user: String = ""
+
         
         let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()!.currentUser?.uid)!)
         currentUser.observeSingleEvent(of: .value, with: { snapshot in
             
-            let value = snapshot.value as? NSDictionary
-            group = value?["group"] as! String
-            user = value?["email"] as! String
+
             
-            print("Group: \(group)")
+            print("Group: \(self.group)")
+            print("name: \(self.name)")
+            print("pointsstring: \(self.pointsString)")
             
         })
         
         let saveAction = UIAlertAction(title: "Save",
                                        style: .default) { action in
                                         let goalField = alert.textFields![0].text
-                                        let points: Int = Int(alert.textFields![1].text!)!
+                                        let pointsField: Int = Int(alert.textFields![1].text!)!
                                         
-                                        let goalItem = Goal(name: goalField!, addedByUser: user, completed: false, points: points, group: group)
+                                        let goalItem = Goal(name: goalField!, addedByUser: self.userC, completed: false, points: pointsField, group: self.group)
 
                                         self.items.append(goalItem)
                                         
@@ -171,7 +171,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    
     // MARK: UITableView Delegate methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -204,6 +203,20 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         goal.ref?.updateChildValues([
             "completed": toggledCompletion
             ])
+        
+        let currentPointsInt = pointsInt + goal.points
+        pointsInt = currentPointsInt
+        
+        let userPointRef  = usersRef.child("points")
+        userPointRef.updateChildValues(["points":currentPointsInt])
+        print("currentPoints\( pointsInt)")
+        
+//        goalRef.child("points").observeSingleEvent(of: .value, with: { snapshot in
+//            let valString = snapshot.value
+//            // var value = pointsString
+//            value = value + goal.points
+        self.currentUser.child("points").setValue(pointsInt)
+//        })
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

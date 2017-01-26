@@ -16,9 +16,13 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var pointsUser: UILabel!
     
+    var group: String = ""
+    var email: String = ""
+    var points: Int = 0
+ 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
         // Initialize Tab Bar Item
         tabBarItem = UITabBarItem(title: "Detail", image: UIImage(named: "icon-cover"), tag: 2)
     }
@@ -26,19 +30,17 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var group: String = ""
-        var email: String = ""
-        var points: String = ""
-        
         let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()!.currentUser?.uid)!)
         currentUser.observeSingleEvent(of: .value, with: { snapshot in
             
             let value = snapshot.value as? NSDictionary
-            email = value?["email"] as! String
-            // points = value?["points"] as! String
+            self.email = value?["email"] as! String
+            self.points = value?["points"] as! Int
+            let points = self.points
             
-            self.nameUser.text! = email
-            self.pointsUser.text! = points
+            
+            self.nameUser.text! = self.email
+            self.pointsUser.text! = String(points) + " XP"
         })
         
         
