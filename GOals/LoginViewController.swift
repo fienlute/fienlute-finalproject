@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
 
     var ref: FIRDatabaseReference!
     let loginToList = "LoginToList"
-    //let defaults = UserDefaults.standard
+    var currentUser = [User]()
     
     @IBOutlet weak var textFieldLoginEmail: UITextField!
     @IBOutlet weak var textFieldLoginPassword: UITextField!
@@ -23,28 +23,38 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         ref =  FIRDatabase.database().reference(withPath: "Users")
+        
        // Set background to mountains.
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
         
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
-    
+            
+            print("UID1:", user?.uid)
+            
             if user != nil {
-    
+                
                 self.performSegue(withIdentifier: self.loginToList, sender: nil)
             }
         }
     }
     
-    @IBAction func loginDidTouch(_ sender: AnyObject) {
+    @IBAction func loginDidTouch(_ sender: Any) {
+        
         FIRAuth.auth()!.signIn(withEmail: textFieldLoginEmail.text!,
                                password: textFieldLoginPassword.text!) {
-        (user, error) in
-        if error != nil {
-            self.errorAlert(title: "Login Failed", alertCase: "error")
-            }
-        //self.performSegue(withIdentifier: "LoginToList", sender: nil)
+                                (user, error) in
+                                
+                                if error != nil {
+                                    self.errorAlert(title: "Error with loggig in", alertCase: "Enter a valid email and password.")
+                                }
+                                
+                                
+         
         }
+
     }
+    
+
 
     @IBAction func signupDidTouch(_ sender: AnyObject) {
         let alert = UIAlertController(title: "Register",
