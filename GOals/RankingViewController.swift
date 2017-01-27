@@ -21,20 +21,24 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     var group: String = ""
     var name: String = ""
     var points: Int = 0
+    var pointsArray = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        
+        // sort by int
+        
         // set background mountains
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
+        
 
         // Puts users of group into array
         let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
         
-        currentUser.observeSingleEvent(of: .value, with: { snapshot in
+            currentUser.observeSingleEvent(of: .value, with: { snapshot in
 
-            // var points: String = ""
-            
             let value = snapshot.value as? NSDictionary
             self.group = value?["group"] as! String
             self.name = value?["email"] as! String
@@ -50,20 +54,16 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
                         let userItem = User(snapshot: item as! FIRDataSnapshot)
                         newItems.append(userItem)
                     }
-                    
-                    if snapshot.exists() {
-                        print(snapshot.value)
-                        print("Group: \(self.group)")
-                        
-                    } else {
-                        print("Group: \(self.group)")
-                        print("test2")
-                    }
-                    //
+
                     self.items = newItems
                     self.tableView.reloadData()
+
+//                    let pointsArray = items.points({ (goal: Goal) -> Int in
+//                        goal.points
+//                    })
             })
         })
+ 
     }
     
     
@@ -92,7 +92,22 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.userRankingLabel.text = user.email
         cell.userPointsLabel.text = String(points)
         
+        pointsArray.append(points)
+        
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        
+        let goal = items[indexPath.row]
 
+    }
+    
+    func descending(value1: Int, value2: Int) -> Bool {
+        // A number precedes another if it is higher.
+        // ... This is a descending sort.
+        return value1 > value2;
+    }
 }

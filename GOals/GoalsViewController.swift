@@ -17,10 +17,8 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: Properties
     var senderDisplayName: String?
-    //var goalRef: FIRDatabaseReference!
     var goalRef =  FIRDatabase.database().reference(withPath: "goals")
     let usersRef = FIRDatabase.database().reference(withPath: "online")
-    // let goalRef = FIRDatabase.database().reference().child("goals")
 
     var goals = [Goal]()
     let listToUsers = "ListToUsers"
@@ -31,7 +29,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var name: String = ""
     var pointsInt: Int = 0
     var pointsString: String = ""
-    var userC: String = ""
     
     var currentUserObject: [User] = []
     let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
@@ -95,24 +92,13 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK :Actions
 
     @IBAction func addGoalDidTouch(_ sender: Any) {
-        
-        // print("Group: \(group)")
-        
    
         let alert = UIAlertController(title: "Goal",
                                       message: "Add a new goal",
                                       preferredStyle: .alert)
         
-
-        
         let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()!.currentUser?.uid)!)
         currentUser.observeSingleEvent(of: .value, with: { snapshot in
-            
-
-            
-            print("Group: \(self.group)")
-            print("name: \(self.name)")
-            print("pointsstring: \(self.pointsString)")
             
         })
         
@@ -121,7 +107,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                         let goalField = alert.textFields![0].text
                                         let pointsField: Int = Int(alert.textFields![1].text!)!
                                         
-                                        let goalItem = Goal(name: goalField!, addedByUser: self.userC, completed: false, points: pointsField, group: self.group)
+                                        let goalItem = Goal(name: goalField!, addedByUser: self.name, completed: false, points: pointsField, group: self.group)
 
                                         self.items.append(goalItem)
                                         
@@ -210,13 +196,9 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let userPointRef  = usersRef.child("points")
         userPointRef.updateChildValues(["points":currentPointsInt])
         print("currentPoints\( pointsInt)")
-        
-//        goalRef.child("points").observeSingleEvent(of: .value, with: { snapshot in
-//            let valString = snapshot.value
-//            // var value = pointsString
-//            value = value + goal.points
+
         self.currentUser.child("points").setValue(pointsInt)
-//        })
+
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

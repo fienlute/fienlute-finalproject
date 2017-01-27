@@ -18,7 +18,7 @@ class DetailViewController: UIViewController {
     
     var group: String = ""
     var email: String = ""
-    var points: Int = 0
+    
  
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -29,24 +29,26 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
+
+        // set background mountains
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        var points: Int = 0
         let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()!.currentUser?.uid)!)
         currentUser.observeSingleEvent(of: .value, with: { snapshot in
             
             let value = snapshot.value as? NSDictionary
             self.email = value?["email"] as! String
-            self.points = value?["points"] as! Int
-            let points = self.points
-            
+            points = value?["points"] as! Int
+            let points = points
             
             self.nameUser.text! = self.email
             self.pointsUser.text! = String(points) + " XP"
-        })
-        
-        
-        
-        // set background mountains
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
+            })
     }
 
     override func didReceiveMemoryWarning() {

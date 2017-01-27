@@ -88,9 +88,9 @@
 		EEC32D7A1E2CCF7D00D76EBC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EED9BB1A1E30DD6100D2668D /* DetailsGroupViewController.swift */,
 				EED0DFC21E250ADA00F33D32 /* LoginViewController.swift */,
 				EED0DFD61E2784B800F33D32 /* GoalsViewController.swift */,
-				EED9BB1A1E30DD6100D2668D /* DetailsGroupViewController.swift */,
 				EED0DFD81E27B40400F33D32 /* RankingViewController.swift */,
 				EED0DFDA1E27B41900F33D32 /* DetailViewController.swift */,
 			);

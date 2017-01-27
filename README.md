@@ -39,4 +39,6 @@ optional to implement:
 6.  Foto toevoegen als gedaan 
 7.  Live feed wie wat heeft bereikt 
 
+[![BCH compliance](https://bettercodehub.com/edge/badge/fienlute/programmeerproject)](https://bettercodehub.com)
+
 
