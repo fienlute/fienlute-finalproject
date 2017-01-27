@@ -36,7 +36,7 @@ optional to implement:
 2.	Gebruikers kunnen doelen die ze willen behalen als favoriet instellen   
 3.	Challenge 1 specifieke gebruiker    
 5.  Beloningen   
-6.  Foto toevoegen als gedaan 
+6.  Foto toevoegen als gedaan  
 7.  Live feed wie wat heeft bereikt 
 
 [![BCH compliance](https://bettercodehub.com/edge/badge/fienlute/programmeerproject)](https://bettercodehub.com)
