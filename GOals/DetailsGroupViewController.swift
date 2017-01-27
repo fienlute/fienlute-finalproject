@@ -62,7 +62,6 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
             //self.tableView.reloadData()
 
         })
-
     }
     
     override func didReceiveMemoryWarning() {

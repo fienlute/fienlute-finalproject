@@ -47,9 +47,7 @@ class LoginViewController: UIViewController {
                                 if error != nil {
                                     self.errorAlert(title: "Error with loggig in", alertCase: "Enter a valid email and password.")
                                 }
-                                
-                                
-         
+
         }
 
     }

@@ -198,7 +198,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         print("currentPoints\( pointsInt)")
 
         self.currentUser.child("points").setValue(pointsInt)
-
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
