@@ -1,0 +1,10 @@
+exclude:
+- /GOals/CreateGroupCell.swift
+- /GOals/CustomCell.swift
+- /GOals/CustumCell.swift
+- /GOals/DataService.swift
+- /GOals/DetailsGroupViewController.swift
+component_depth: 1
+languages:
+- ruby
+- swift
