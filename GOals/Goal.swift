@@ -18,16 +18,16 @@ struct Goal {
     var completed: Bool
     let points: Int
     let group: String
-    // let achievedBy: String
+    let completedBy: String
     
-    init(name: String, addedByUser: String, completed: Bool, points: Int, group: String, key: String = "") {
+    init(name: String, addedByUser: String, completed: Bool, points: Int, group: String, completedBy: String, key: String = "") {
         self.key = key
         self.name = name
         self.addedByUser = addedByUser
         self.completed = completed
         self.points = points
         self.group = group
-      //  self.achievedBy = achievedBy
+        self.completedBy = completedBy
         self.ref = nil
     }
     
@@ -39,7 +39,7 @@ struct Goal {
         completed = snapshotValue["completed"] as! Bool
         points = snapshotValue["points"] as! Int
         group = snapshotValue["group"] as! String
-        //achievedBy = snapshotValue["achievedBy"] as! String
+        completedBy = snapshotValue["completedBy"] as! String
         ref = snapshot.ref
     }
     
@@ -50,7 +50,7 @@ struct Goal {
             "completed": completed,
             "points": points,
             "group": group,
-            //"achievedBy": achievedBy
+            "completedBy": completedBy
         ]
     }
     

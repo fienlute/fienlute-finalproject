@@ -13,8 +13,7 @@ import FirebaseAuth
 class LoginViewController: UIViewController {
 
     var ref: FIRDatabaseReference!
-    let loginToList = "LoginToList"
-    var currentUser = [User]()
+//    var currentUser = [User]()
     
     @IBOutlet weak var textFieldLoginEmail: UITextField!
     @IBOutlet weak var textFieldLoginPassword: UITextField!
@@ -29,11 +28,10 @@ class LoginViewController: UIViewController {
         
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
             
-            print("UID1:", user?.uid)
             
             if user != nil {
-                
-                self.performSegue(withIdentifier: self.loginToList, sender: nil)
+                print("USER: \(user)")
+                self.performSegue(withIdentifier: "LoginToList", sender: nil)
             }
         }
     }
@@ -138,13 +136,14 @@ class LoginViewController: UIViewController {
     
 
     // MARK: Navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        super.prepare(for: segue, sender: sender)
-//        let navVc = segue.destination as! UINavigationController // 1
-//        let GoalsViewController = navVc.viewControllers.first as! GoalsViewController // 2
-//        
-//        DetailViewController.nameUser.text = textFieldLoginEmail?.text // 3
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        if let destination = segue.destination as? GoalsViewController {
+//            destination.UID =
+        }
+        
+    }
 }
 
 

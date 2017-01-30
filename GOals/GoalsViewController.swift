@@ -29,23 +29,28 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var name: String = ""
     var pointsInt: Int = 0
     var pointsString: String = ""
-    
+    var completedBy: String = ""
     var currentUserObject: [User] = []
-    let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
-
-
+    var currentUser: FIRDatabaseReference?
+    let itemRef = FIRDatabase.database().reference(withPath: "goals").childByAutoId()
+    var UID: String?
+    
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FIRAuth.auth()!.addStateDidChangeListener { auth, user in
+            guard let user = user else { return }
+            self.user = User(authData: user)
+            currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
+        }
         
         // Set background mountains.
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
         title = "Goals"
  
-        print("UID:\(FIRAuth.auth()!.currentUser?.uid)")
         
-        currentUser.observeSingleEvent(of: .value, with: { snapshot in
+        currentUser?.observeSingleEvent(of: .value, with: { snapshot in
 
             let value = snapshot.value as? NSDictionary
             self.group = value?["group"] as! String
@@ -97,23 +102,21 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                       message: "Add a new goal",
                                       preferredStyle: .alert)
         
-        let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()!.currentUser?.uid)!)
-        currentUser.observeSingleEvent(of: .value, with: { snapshot in
-            
-        })
+//        let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()!.currentUser?.uid)!)
+//        currentUser.observeSingleEvent(of: .value, with: { snapshot in
+//            
+//        })
         
         let saveAction = UIAlertAction(title: "Save",
                                        style: .default) { action in
                                         let goalField = alert.textFields![0].text
                                         let pointsField: Int = Int(alert.textFields![1].text!)!
                                         
-                                        let goalItem = Goal(name: goalField!, addedByUser: self.name, completed: false, points: pointsField, group: self.group)
+                                        let goalItem = Goal(name: goalField!, addedByUser: self.name, completed: false, points: pointsField, group: self.group, completedBy: self.completedBy)
 
                                         self.items.append(goalItem)
-                                        
-                                        let itemRef = self.goalRef.childByAutoId() // 1
-                                        
-                                        itemRef.setValue(goalItem.toAnyObject())
+                                       
+                                        self.itemRef.setValue(goalItem.toAnyObject())
                                         
         }
         
@@ -154,6 +157,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.accessoryType = .checkmark
             cell.textLabel?.textColor = UIColor.gray
             cell.detailTextLabel?.textColor = UIColor.gray
+            
         }
     }
     
@@ -190,14 +194,19 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             "completed": toggledCompletion
             ])
         
-        let currentPointsInt = pointsInt + goal.points
-        pointsInt = currentPointsInt
-        
-        let userPointRef  = usersRef.child("points")
-        userPointRef.updateChildValues(["points":currentPointsInt])
-        print("currentPoints\( pointsInt)")
+//        let currentPointsInt = pointsInt + goal.points
+//        pointsInt = currentPointsInt
+//        
+//        let userPointRef  = usersRef.child("points")
+//        userPointRef.updateChildValues(["points":currentPointsInt])
+//        
+//        let completedRef = itemRef.childByAppendingPath("\(autoID)/completedBy")
+//
+//        completedRef.updateChildValues(["completedBy":completedBy])
+//        
+//        self.currentUser.child("points").setValue(pointsInt)
+//        completedRef.child("completedBy").setValue(name)
 
-        self.currentUser.child("points").setValue(pointsInt)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

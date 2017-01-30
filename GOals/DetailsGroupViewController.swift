@@ -33,7 +33,8 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
     var userCountBarButtonItem: UIBarButtonItem!
     var goal: Goal!
     let usersRef = FIRDatabase.database().reference(withPath: "online")
-
+    var completedBy: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -126,9 +127,9 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
                                             let points: Int = Int(alert.textFields![1].text!)!
                                             let group = alert.textFields![2].text
                                             
-                                            let goalItem = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points, group: self.user.group)
+                                            let goalItem = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points, group: self.user.group, completedBy: self.completedBy)
                                         
-                                            let goal = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points, group: self.user.group)
+                                            let goal = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points, group: self.user.group, completedBy: self.completedBy)
                                             
                                             self.items.append(goal)
                                             
