@@ -10,4 +10,4 @@ haal onnodige comments en code die uitgecommend is eruit.
 Staat als rood aangevinkt, maar is in mijn geval niet handig om de unit interfaces kleiner te maken. 
 
 ### screenshot
-https://github.com/fienlute/programmeerproject/blob/master/GOals/doc/bettercode%20screenshot.png
+![alt tag](https://github.com/fienlute/programmeerproject/blob/master/GOals/doc/bettercode%20screenshot.png)
