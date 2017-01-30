@@ -29,6 +29,7 @@ optional to implement:
 6.  Foto toevoegen als gedaan 
 7.  Live feed wie wat heeft bereikt 
 
+
 ### diagram 
 ![alt tag](https://github.com/fienlute/programmeerproject/blob/master/GOals/doc/diagram%20GOals.png)
 

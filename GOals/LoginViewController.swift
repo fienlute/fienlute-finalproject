@@ -128,6 +128,12 @@ class LoginViewController: UIViewController {
     alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
     self.present(alert, animated: true, completion: nil)
     }
+        
+    /// dismisses keyboard after action
+    func textFieldShouldReturn(searchBar: UISearchBar) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 
     
 
