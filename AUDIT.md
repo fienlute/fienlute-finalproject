@@ -8,3 +8,5 @@ haal onnodige comments en code die uitgecommend is eruit.
 
 ###keep unit interfaces small: 
 Staat als rood aangevinkt, maar is in mijn geval niet handig om de unit interfaces kleiner te maken. 
+
+https://github.com/fienlute/programmeerproject/blob/master/GOals/doc/bettercodehub.png
