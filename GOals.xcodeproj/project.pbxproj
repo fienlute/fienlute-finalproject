@@ -12,6 +12,7 @@
 		EE09BCC51E2D01AE0004D6C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE09BCC41E2D01AE0004D6C2 /* GoogleService-Info.plist */; };
 		EE09BCC71E2D027A0004D6C2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE09BCC61E2D027A0004D6C2 /* Info.plist */; };
 		EE09CADE1E38028200983609 /* RankingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE09CADD1E38028200983609 /* RankingCell.swift */; };
+		EE4AA8DE1E3F4BE40040477B /* AUDIT.md in Sources */ = {isa = PBXBuildFile; fileRef = EE4AA8DD1E3F4BE40040477B /* AUDIT.md */; };
 		EEBFDB6B1E361E14007DAA43 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFDB6A1E361E14007DAA43 /* DataService.swift */; };
 		EEBFDB6E1E3769BD007DAA43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEBFDB6C1E3769BD007DAA43 /* Main.storyboard */; };
 		EEC32D701E295B4400D76EBC /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC32D6F1E295B4400D76EBC /* Goal.swift */; };
@@ -37,6 +38,7 @@
 		EE09BCC41E2D01AE0004D6C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE09BCC61E2D027A0004D6C2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE09CADD1E38028200983609 /* RankingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingCell.swift; sourceTree = "<group>"; };
+		EE4AA8DD1E3F4BE40040477B /* AUDIT.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = AUDIT.md; sourceTree = "<group>"; };
 		EEBFDB6A1E361E14007DAA43 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		EEBFDB6D1E3769BD007DAA43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EEC32D6F1E295B4400D76EBC /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				EED9BB141E2E5BD100D2668D /* DESIGN.md */,
 				EED9BB151E2E5BD100D2668D /* PROCESS.md */,
 				EED9BB161E2E5BD100D2668D /* README.md */,
+				EE4AA8DD1E3F4BE40040477B /* AUDIT.md */,
 				EED0DFBF1E250ADA00F33D32 /* GOals */,
 				EED0DFBE1E250ADA00F33D32 /* Products */,
 				6D8FAADBE55FC48C2A2905B6 /* Pods */,
@@ -308,6 +311,7 @@
 				EED9BB171E2E5BD100D2668D /* DESIGN.md in Sources */,
 				EE09BCC31E2CF86C0004D6C2 /* GoalsCell.swift in Sources */,
 				EED9BB191E2E5BD100D2668D /* README.md in Sources */,
+				EE4AA8DE1E3F4BE40040477B /* AUDIT.md in Sources */,
 				EE09CADE1E38028200983609 /* RankingCell.swift in Sources */,
 				EEBFDB6B1E361E14007DAA43 /* DataService.swift in Sources */,
 				EED9BB181E2E5BD100D2668D /* PROCESS.md in Sources */,

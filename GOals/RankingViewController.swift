@@ -25,14 +25,11 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
-        
         // sort by int
         
         // set background mountains
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
-        
 
         // Puts users of group into array
         let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
@@ -57,10 +54,6 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
 
                     self.items = newItems
                     self.tableView.reloadData()
-
-//                    let pointsArray = items.points({ (goal: Goal) -> Int in
-//                        goal.points
-//                    })
             })
         })
  
@@ -98,15 +91,9 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        guard tableView.cellForRow(at: indexPath) != nil else { return }
         
-        let goal = items[indexPath.row]
+        _ = items[indexPath.row]
 
     }
-    
-    func descending(value1: Int, value2: Int) -> Bool {
-        // A number precedes another if it is higher.
-        // ... This is a descending sort.
-        return value1 > value2;
-    }
-}
+ }

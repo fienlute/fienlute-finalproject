@@ -125,31 +125,16 @@ class DetailsGroupViewController: UIViewController, UITableViewDelegate, UITable
                                             let goalField = alert.textFields![0].text
                                             let points: Int = Int(alert.textFields![1].text!)!
                                             let group = alert.textFields![2].text
-                                            //let itemRef = self.groupRef.childByAutoId()
                                             
                                             let goalItem = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points, group: self.user.group)
                                         
-//                                            let goalItemRef = self.itemRef.child(goalField.lowercased())
-//                                            itemRef.setValue(goalItem)
-//
-//                                            self.groupRef = self.groupRef.child("goals")
-                                            
-//  self.groupRef.setValue(goalItem.toAnyObject())
-
                                             let goal = Goal(name: goalField!, addedByUser: self.user.email, completed: false, points: points, group: self.user.group)
                                             
                                             self.items.append(goal)
                                             
-// maakt nieuwe items op het level van 'goals' dus kan gebruikt worden als groepnaam ipv goals, binnen groepen --> group
+                                            let itemRef = self.goalRef.childByAutoId()
                                             
-                                            
-//                                            let goalRef = self.groupRef.child(goalField!)
-//                                            
-//                                            goalRef.setValue(goalItem.toAnyObject())
-                                            
-                                            let itemRef = self.goalRef.childByAutoId() // 1
-                                            
-                                            itemRef.setValue(goalItem.toAnyObject()) // 3
+                                            itemRef.setValue(goalItem.toAnyObject())
         }
         
                 let cancelAction = UIAlertAction(title: "Cancel",
