@@ -31,9 +31,8 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var pointsString: String = ""
     var completedBy: String = ""
     var currentUserObject: [User] = []
-    var currentUser: FIRDatabaseReference?
+//    var currentUser: FIRDatabaseReference?
     let itemRef = FIRDatabase.database().reference(withPath: "goals").childByAutoId()
-    var UID: String?
     
     // MARK: View Lifecycle
     override func viewDidLoad() {
@@ -42,7 +41,52 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
             guard let user = user else { return }
             self.user = User(authData: user)
-            currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
+            
+            print("UID: \(self.user.uid)")
+            
+            let currentUser = FIRDatabase.database().reference(withPath: "Users").child(self.user.uid)
+            
+            
+            
+            currentUser.observeSingleEvent(of: .value, with: { snapshot in
+                
+                let value = snapshot.value as? NSDictionary
+                
+                print("GROUP: \(self.user.group)")
+                
+                self.group = value?["group"] as! String
+                self.name = value?["email"] as! String
+                
+                self.pointsInt = value?["points"] as! Int
+                self.pointsString = String(self.pointsInt)
+                
+                // Put goal into array.
+                
+                self.goalRef.queryOrdered(byChild: "group").queryEqual(toValue: self.group).observe(.value, with:
+                    { (snapshot) in
+                        
+                        var newItems: [Goal] = []
+                        
+                        for item in snapshot.children {
+                            
+                            let goalItem = Goal(snapshot: item as! FIRDataSnapshot)
+                            newItems.append(goalItem)
+                        }
+                        
+                        if snapshot.exists() {
+                            // print(snapshot.value)
+                            print("Group: \(self.group)")
+                            
+                        } else {
+                            print("Group: \(self.group)")
+                            print("test2")
+                        }
+                        
+                        self.items = newItems
+                        self.tableView.reloadData()
+                        
+                })
+            })
         }
         
         // Set background mountains.
@@ -50,42 +94,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         title = "Goals"
  
         
-        currentUser?.observeSingleEvent(of: .value, with: { snapshot in
 
-            let value = snapshot.value as? NSDictionary
-            self.group = value?["group"] as! String
-            self.name = value?["email"] as! String
-            
-            self.pointsInt = value?["points"] as! Int
-            self.pointsString = String(self.pointsInt)
-
-            // Put goal into array.
-
-            self.goalRef.queryOrdered(byChild: "group").queryEqual(toValue: self.group).observe(.value, with:
-                { (snapshot) in
-
-                    var newItems: [Goal] = []
-                    
-                    for item in snapshot.children {
-                    
-                        let goalItem = Goal(snapshot: item as! FIRDataSnapshot)
-                        newItems.append(goalItem)
-                    }
-                    
-                    if snapshot.exists() {
-                        // print(snapshot.value)
-                        print("Group: \(self.group)")
-                    
-                    } else {
-                        print("Group: \(self.group)")
-                        print("test2")
-                    }
- 
-                self.items = newItems
-                self.tableView.reloadData()
-                
-            })
-        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
