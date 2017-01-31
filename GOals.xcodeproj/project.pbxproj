@@ -12,6 +12,7 @@
 		EE09BCC51E2D01AE0004D6C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE09BCC41E2D01AE0004D6C2 /* GoogleService-Info.plist */; };
 		EE09BCC71E2D027A0004D6C2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE09BCC61E2D027A0004D6C2 /* Info.plist */; };
 		EE09CADE1E38028200983609 /* RankingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE09CADD1E38028200983609 /* RankingCell.swift */; };
+		EE235C421E3FA0B40048CF7E /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235C411E3FA0B40048CF7E /* DetailCell.swift */; };
 		EE4AA8DE1E3F4BE40040477B /* AUDIT.md in Sources */ = {isa = PBXBuildFile; fileRef = EE4AA8DD1E3F4BE40040477B /* AUDIT.md */; };
 		EEBFDB6B1E361E14007DAA43 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFDB6A1E361E14007DAA43 /* DataService.swift */; };
 		EEBFDB6E1E3769BD007DAA43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEBFDB6C1E3769BD007DAA43 /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 		EE09BCC41E2D01AE0004D6C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE09BCC61E2D027A0004D6C2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE09CADD1E38028200983609 /* RankingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingCell.swift; sourceTree = "<group>"; };
+		EE235C411E3FA0B40048CF7E /* DetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		EE4AA8DD1E3F4BE40040477B /* AUDIT.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = AUDIT.md; sourceTree = "<group>"; };
 		EEBFDB6A1E361E14007DAA43 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		EEBFDB6D1E3769BD007DAA43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				EE09CADD1E38028200983609 /* RankingCell.swift */,
+				EE235C411E3FA0B40048CF7E /* DetailCell.swift */,
 				EEBFDB6A1E361E14007DAA43 /* DataService.swift */,
 				EEC32D6F1E295B4400D76EBC /* Goal.swift */,
 				EEC32D711E295DCE00D76EBC /* User.swift */,
@@ -318,6 +321,7 @@
 				EEC32D721E295DCE00D76EBC /* User.swift in Sources */,
 				EED0DFD71E2784B800F33D32 /* GoalsViewController.swift in Sources */,
 				EED0DFD91E27B40400F33D32 /* RankingViewController.swift in Sources */,
+				EE235C421E3FA0B40048CF7E /* DetailCell.swift in Sources */,
 				EED0DFDB1E27B41900F33D32 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

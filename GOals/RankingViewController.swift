@@ -14,6 +14,7 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var tableView: UITableView!
  
+    var goalRef =  FIRDatabase.database().reference(withPath: "goals")
     let usersRef = FIRDatabase.database().reference(withPath: "Users")
     var user: User!
     var items: [User] = []
@@ -56,7 +57,6 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
                     self.tableView.reloadData()
             })
         })
- 
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -82,7 +82,7 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         let points = user.points
 
         cell.userRankingLabel.text = user.email
-        cell.userPointsLabel.text = String(points)
+        cell.userPointsLabel.text = String(points) + " XP"
         
         pointsArray.append(points)
         

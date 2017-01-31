@@ -19,7 +19,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var senderDisplayName: String?
     var goalRef =  FIRDatabase.database().reference(withPath: "goals")
     let usersRef = FIRDatabase.database().reference(withPath: "online")
-
     var goals = [Goal]()
     let listToUsers = "ListToUsers"
     var items: [Goal] = []
@@ -30,10 +29,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var pointsInt: Int = 0
     var pointsString: String = ""
     var completedBy: String = ""
-    var currentUserObject: [User] = []
-//    var currentUser: FIRDatabaseReference?
-    let itemRef = FIRDatabase.database().reference(withPath: "goals").childByAutoId()
-    
+       
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +41,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print("UID: \(self.user.uid)")
             
             let currentUser = FIRDatabase.database().reference(withPath: "Users").child(self.user.uid)
-            
-            
-            
+
             currentUser.observeSingleEvent(of: .value, with: { snapshot in
                 
                 let value = snapshot.value as? NSDictionary
@@ -73,18 +67,8 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                             newItems.append(goalItem)
                         }
                         
-                        if snapshot.exists() {
-                            // print(snapshot.value)
-                            print("Group: \(self.group)")
-                            
-                        } else {
-                            print("Group: \(self.group)")
-                            print("test2")
-                        }
-                        
                         self.items = newItems
                         self.tableView.reloadData()
-                        
                 })
             })
         }
@@ -92,9 +76,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Set background mountains.
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
         title = "Goals"
- 
-        
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,6 +84,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     }
     
+
     // MARK :Actions
 
     @IBAction func addGoalDidTouch(_ sender: Any) {
@@ -111,22 +93,16 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                       message: "Add a new goal",
                                       preferredStyle: .alert)
         
-//        let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()!.currentUser?.uid)!)
-//        currentUser.observeSingleEvent(of: .value, with: { snapshot in
-//            
-//        })
-        
         let saveAction = UIAlertAction(title: "Save",
                                        style: .default) { action in
                                         let goalField = alert.textFields![0].text
                                         let pointsField: Int = Int(alert.textFields![1].text!)!
                                         
                                         let goalItem = Goal(name: goalField!, addedByUser: self.name, completed: false, points: pointsField, group: self.group, completedBy: self.completedBy)
-
+                    
+                                        let goalItemRef = self.goalRef.child((goalField?.lowercased())!)
                                         self.items.append(goalItem)
-                                       
-                                        self.itemRef.setValue(goalItem.toAnyObject())
-                                        
+                                        goalItemRef.setValue(goalItem.toAnyObject())
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -171,7 +147,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // MARK: UITableView Delegate methods
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -190,6 +166,8 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let currentUser = FIRDatabase.database().reference(withPath: "Users").child(self.user.uid)
 
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
 
@@ -199,22 +177,22 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         toggleCellCheckbox(cell, isCompleted: toggledCompletion)
 
+        let currentPointsInt = pointsInt + goal.points
+        pointsInt = currentPointsInt
+        
+        let userPointRef  = usersRef.child("points")
+        userPointRef.updateChildValues(["points":currentPointsInt])
+        
+        currentUser.child("points").setValue(pointsInt)
+        
         goal.ref?.updateChildValues([
-            "completed": toggledCompletion
+            "completed": toggledCompletion,
             ])
         
-//        let currentPointsInt = pointsInt + goal.points
-//        pointsInt = currentPointsInt
-//        
-//        let userPointRef  = usersRef.child("points")
-//        userPointRef.updateChildValues(["points":currentPointsInt])
-//        
-//        let completedRef = itemRef.childByAppendingPath("\(autoID)/completedBy")
-//
-//        completedRef.updateChildValues(["completedBy":completedBy])
-//        
-//        self.currentUser.child("points").setValue(pointsInt)
-//        completedRef.child("completedBy").setValue(name)
+        let newCompletedBy = self.name
+        completedBy = newCompletedBy
+        
+        goal.ref?.updateChildValues(["completedBy" : completedBy])
 
     }
 

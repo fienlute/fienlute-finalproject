@@ -285,9 +285,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="goalsTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i9f-gV-Hqt">
                                 <rect key="frame" x="16" y="237" width="343" height="373"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.19745291100000001" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="Vly-ZF-9Dq">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="56" id="Vly-ZF-9Dq" customClass="DetailCell" customModule="GOals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vly-ZF-9Dq" id="ivb-8q-ccp">
@@ -322,8 +322,18 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.19745291100000001" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1975064212" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="completedGoalLabel" destination="kVp-2w-XxB" id="FIC-4l-QGN"/>
+                                            <outlet property="completedPointsLabel" destination="i88-v2-JJu" id="eGt-3p-jGV"/>
+                                            <outlet property="dateCompletedLabel" destination="Xvk-f6-gKF" id="jAv-uo-5Yj"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="t9U-gy-gse" id="FTe-uQ-23T"/>
+                                    <outlet property="delegate" destination="t9U-gy-gse" id="Rpr-rd-2yx"/>
+                                </connections>
                             </tableView>
                             <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="35g-xt-cCu">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
@@ -374,6 +384,7 @@
                     <connections>
                         <outlet property="nameUser" destination="7NF-EA-Tig" id="hPd-ho-N6b"/>
                         <outlet property="pointsUser" destination="cl0-dM-EMk" id="8kp-Zp-8oR"/>
+                        <outlet property="tableView" destination="i9f-gV-Hqt" id="Sw4-B9-o2x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Yw-Cd-al0" userLabel="First Responder" sceneMemberID="firstResponder"/>

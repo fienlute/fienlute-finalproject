@@ -62,5 +62,11 @@ de doelen van de groep van de current user worden laten zien in de GoalsVC, de u
 
 #week 4
 
+## maandag
+login gefixt, had ik stuk gemaakt. De segue bleek niet te kloppen en hij gaf niet de goede info mee. Verder code opgeschoond. 
+
+## dinsdag 
+code verder opgeschoond: dode code eruit, onnodige comments eruit
+
 
 

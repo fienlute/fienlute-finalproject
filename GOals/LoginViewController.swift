@@ -139,7 +139,7 @@ class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
-        if let destination = segue.destination as? GoalsViewController {
+        if segue.destination is GoalsViewController {
 //            destination.UID =
         }
         
