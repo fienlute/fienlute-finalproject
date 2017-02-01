@@ -12,8 +12,10 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
 
+    // MARK: Properties
     var ref: FIRDatabaseReference!
     
+    // MARK: Outlets
     @IBOutlet weak var textFieldLoginEmail: UITextField!
     @IBOutlet weak var textFieldLoginPassword: UITextField!
     
@@ -34,6 +36,8 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // MARK: Actions
+    
     @IBAction func loginDidTouch(_ sender: Any) {
         
         FIRAuth.auth()!.signIn(withEmail: textFieldLoginEmail.text!,
@@ -46,8 +50,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-
-
     @IBAction func signupDidTouch(_ sender: AnyObject) {
         let alert = UIAlertController(title: "Register",
                                       message: "Register",
@@ -61,18 +63,19 @@ class LoginViewController: UIViewController {
             
             FIRAuth.auth()!.createUser(withEmail: emailField.text!,
                                        password: passwordField.text!) { user, error in
+        
                 if error == nil {
                     
                     let user = User(uid: (user?.uid)!, email: emailField.text!, group: groupField.text!, points: 0)
                     
                     FIRAuth.auth()!.signIn(withEmail: self.textFieldLoginEmail.text!,
                                            password: self.textFieldLoginPassword.text!)
-                    
+
                     let userRef = self.ref.child((user.uid))
                     userRef.setValue(user.toAnyObject())
 
                 } else {
-                    self.errorAlert(title: "Signup failed", alertCase: "Enter a valid email adress, password and group")
+                    self.errorAlert(title: "Signup failed", alertCase: "Make sure all the fields are filled in. The password must be at least 6 characters.")
                 }
             }
         }
@@ -98,12 +101,10 @@ class LoginViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+
+    // MARK: Methods
     
-        override func didReceiveMemoryWarning() {
-            super.didReceiveMemoryWarning()
-
-    }
-
+    /// gives alert with title and message
     func errorAlert(title: String, alertCase: String) {
     let alert = UIAlertController(title: title, message: alertCase , preferredStyle: UIAlertControllerStyle.alert)
     alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))

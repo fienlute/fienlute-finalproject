@@ -52,13 +52,14 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.pointsString = String(self.pointsInt)
                 
                 // Put goal into array.
-                
+            
+                    
                 self.goalRef.queryOrdered(byChild: "group").queryEqual(toValue: self.group).observe(.value, with:
                     { (snapshot) in
                         
                         self.goalRef.queryOrdered(byChild: "completedBy").queryEqual(toValue: "").observe(.value, with:
-                            { (snapshot) in
-                            
+                        { (snapshot) in
+                        
                         var newItems: [Goal] = []
                         
                         for item in snapshot.children {
@@ -71,10 +72,11 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         
                         self.items = newItems
                         self.tableView.reloadData()
-                            
+                        
                         })
+                    
+                    })
                 })
-            })
         }
         
         // Set background mountains.
@@ -145,12 +147,8 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
         if !isCompleted {
             cell.accessoryType = .none
-            cell.textLabel?.textColor = UIColor.black
-            cell.detailTextLabel?.textColor = UIColor.black
         } else {
             cell.accessoryType = .checkmark
-            cell.textLabel?.textColor = UIColor.gray
-            cell.detailTextLabel?.textColor = UIColor.gray
         }
     }
     
@@ -180,26 +178,24 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let currentUser = FIRDatabase.database().reference(withPath: "Users").child(self.user.uid)
 
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        
         let goal = items[indexPath.row]
-
         let toggledCompletion = !goal.completed
-        toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-        goal.ref?.updateChildValues(["completed": toggledCompletion])
-        
         let currentPointsInt = pointsInt + goal.points
-        pointsInt = currentPointsInt
         let userPointRef  = usersRef.child("points")
+        let newCompletedBy = self.name
+        let currentUser = FIRDatabase.database().reference(withPath: "Users").child(self.user.uid)
+        toggleCellCheckbox(cell, isCompleted: toggledCompletion)
+        sleep(2)
+        goal.ref?.updateChildValues(["completed": toggledCompletion])
+
+        pointsInt = currentPointsInt
         userPointRef.updateChildValues(["points":currentPointsInt])
         currentUser.child("points").setValue(pointsInt)
-
-        let newCompletedBy = self.name
-
+        
         goal.ref?.updateChildValues(["completedBy" : newCompletedBy])
+
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

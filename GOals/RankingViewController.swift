@@ -44,7 +44,6 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
             self.usersRef.queryOrdered(byChild: "group").queryEqual(toValue: self.group).observe(.value, with:
                 { (snapshot) in
     
-                    
                     var newItems: [User] = []
                     
                     for item in snapshot.children {
