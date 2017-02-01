@@ -16,8 +16,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var senderDisplayName: String?
     var goalRef =  FIRDatabase.database().reference(withPath: "goals")
     let usersRef = FIRDatabase.database().reference(withPath: "online")
-    var goals = [Goal]()
-    let listToUsers = "ListToUsers"
     var items: [Goal] = []
     var goal: Goal!
     var user: User!
@@ -50,7 +48,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 self.group = value?["group"] as! String
                 self.name = value?["email"] as! String
-                
                 self.pointsInt = value?["points"] as! Int
                 self.pointsString = String(self.pointsInt)
                 
@@ -59,16 +56,23 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.goalRef.queryOrdered(byChild: "group").queryEqual(toValue: self.group).observe(.value, with:
                     { (snapshot) in
                         
+                        self.goalRef.queryOrdered(byChild: "completedBy").queryEqual(toValue: "").observe(.value, with:
+                            { (snapshot) in
+                            
                         var newItems: [Goal] = []
                         
                         for item in snapshot.children {
                             
                             let goalItem = Goal(snapshot: item as! FIRDataSnapshot)
+
                             newItems.append(goalItem)
+                            
                         }
                         
                         self.items = newItems
                         self.tableView.reloadData()
+                            
+                        })
                 })
             })
         }
@@ -147,8 +151,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.accessoryType = .checkmark
             cell.textLabel?.textColor = UIColor.gray
             cell.detailTextLabel?.textColor = UIColor.gray
-            
-            
         }
     }
     
@@ -169,8 +171,8 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let goal = items[indexPath.row]
         
         cell.goalLabel.text = goal.name
-        cell.addedByLabel.text = goal.addedByUser
-        cell.pointsLabel.text = String(goal.points)
+        cell.addedByLabel.text = "Added by: " + goal.addedByUser
+        cell.pointsLabel.text = String(goal.points) + " xp"
 
         toggleCellCheckbox(cell, isCompleted: goal.completed)
         
@@ -182,30 +184,22 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let currentUser = FIRDatabase.database().reference(withPath: "Users").child(self.user.uid)
 
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-
+        
         let goal = items[indexPath.row]
 
         let toggledCompletion = !goal.completed
-
         toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-
+        goal.ref?.updateChildValues(["completed": toggledCompletion])
+        
         let currentPointsInt = pointsInt + goal.points
         pointsInt = currentPointsInt
-        
         let userPointRef  = usersRef.child("points")
         userPointRef.updateChildValues(["points":currentPointsInt])
-        
         currentUser.child("points").setValue(pointsInt)
-        
-        goal.ref?.updateChildValues([
-            "completed": toggledCompletion,
-            ])
 
         let newCompletedBy = self.name
-        completedBy = newCompletedBy
-//        goal.ref?.child("completedBy").setValue(completedBy)
-        
-        goal.ref?.updateChildValues(["completedBy" : completedBy])
+
+        goal.ref?.updateChildValues(["completedBy" : newCompletedBy])
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

@@ -13,7 +13,6 @@ import FirebaseAuth
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: Properties
-    @IBOutlet weak var tableView: UITableView!
     var goal: Goal!
     var items: [Goal] = []
     var group: String = ""
@@ -26,11 +25,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var goalName: String = ""
     var goalPoints: Int = 0
     var goalGroup: String = ""
-
     
     // MARK: Outlets
     @IBOutlet weak var nameUser: UILabel!
     @IBOutlet weak var pointsUser: UILabel!
+    @IBOutlet weak var tableView: UITableView!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -63,7 +62,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         newItems.append(goalItem)
                         
                         self.goalName = goalItem.name
-
                     }
                     
                     self.items = newItems
@@ -77,13 +75,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // hide empty cells of tableview
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-        self.tableView.reloadData()
-       
         currentUser.child("points").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            self.pointsUser.text! = String(self.points) + " XP"
-            
+            self.pointsUser.text! = String(self.points) + " xp"
         })
+        
+        self.tableView.reloadData()
     }
     
     // MARK: UITableView Delegate methods
@@ -95,7 +92,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DetailCell
-        let points = self.points
         let goal = items[indexPath.row]
 
         cell.completedGoalLabel.text = goal.name

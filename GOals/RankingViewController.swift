@@ -86,7 +86,7 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         let points = user.points
 
         cell.userRankingLabel.text = user.email
-        cell.userPointsLabel.text = String(points) + " XP"
+        cell.userPointsLabel.text = String(points) + " xp"
         
         pointsArray.append(points)
         

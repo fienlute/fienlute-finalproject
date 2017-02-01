@@ -27,7 +27,6 @@ class LoginViewController: UIViewController {
         
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
             
-            
             if user != nil {
                 print("USER: \(user)")
                 self.performSegue(withIdentifier: "LoginToList", sender: nil)
@@ -44,9 +43,7 @@ class LoginViewController: UIViewController {
                                 if error != nil {
                                     self.errorAlert(title: "Error with loggig in", alertCase: "Enter a valid email and password.")
                                 }
-
         }
-
     }
     
 
