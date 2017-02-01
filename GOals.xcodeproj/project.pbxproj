@@ -105,10 +105,10 @@
 			children = (
 				EE09CADD1E38028200983609 /* RankingCell.swift */,
 				EE235C411E3FA0B40048CF7E /* DetailCell.swift */,
+				EE09BCC21E2CF86C0004D6C2 /* GoalsCell.swift */,
 				EEBFDB6A1E361E14007DAA43 /* DataService.swift */,
 				EEC32D6F1E295B4400D76EBC /* Goal.swift */,
 				EEC32D711E295DCE00D76EBC /* User.swift */,
-				EE09BCC21E2CF86C0004D6C2 /* GoalsCell.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
