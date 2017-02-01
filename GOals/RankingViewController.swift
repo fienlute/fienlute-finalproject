@@ -12,27 +12,26 @@ import FirebaseAuth
 
 class RankingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var tableView: UITableView!
- 
+    // MARK: Properties
     var goalRef =  FIRDatabase.database().reference(withPath: "goals")
     let usersRef = FIRDatabase.database().reference(withPath: "Users")
     var user: User!
     var items: [User] = []
-    var pointsString: String = ""
     var group: String = ""
     var name: String = ""
     var points: Int = 0
     var pointsArray = [Int]()
     
+    // MARK: Outlets
+    @IBOutlet weak var tableView: UITableView!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // sort by int
-        
-        // set background mountains
+        // set background image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
 
-        // Puts users of group into array
         let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
         
             currentUser.observeSingleEvent(of: .value, with: { snapshot in
@@ -45,16 +44,19 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
             self.usersRef.queryOrdered(byChild: "group").queryEqual(toValue: self.group).observe(.value, with:
                 { (snapshot) in
     
+                    
                     var newItems: [User] = []
                     
                     for item in snapshot.children {
                         
+                        
                         let userItem = User(snapshot: item as! FIRDataSnapshot)
                         newItems.append(userItem)
                     }
-
+                    
                     self.items = newItems
                     self.tableView.reloadData()
+                    
             })
         })
     }
@@ -72,6 +74,8 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
+    // MARK: UITableView Delegate methods
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -96,4 +100,5 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         _ = items[indexPath.row]
 
     }
+
  }

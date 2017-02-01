@@ -28,7 +28,7 @@
 		EED9BB171E2E5BD100D2668D /* DESIGN.md in Sources */ = {isa = PBXBuildFile; fileRef = EED9BB141E2E5BD100D2668D /* DESIGN.md */; };
 		EED9BB181E2E5BD100D2668D /* PROCESS.md in Sources */ = {isa = PBXBuildFile; fileRef = EED9BB151E2E5BD100D2668D /* PROCESS.md */; };
 		EED9BB191E2E5BD100D2668D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EED9BB161E2E5BD100D2668D /* README.md */; };
-		EED9BB1B1E30DD6100D2668D /* DetailsGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED9BB1A1E30DD6100D2668D /* DetailsGroupViewController.swift */; };
+		EEEEEF3B1E41E19600BFBF9A /* REPORT.md in Sources */ = {isa = PBXBuildFile; fileRef = EEEEEF3A1E41E19600BFBF9A /* REPORT.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +57,7 @@
 		EED9BB141E2E5BD100D2668D /* DESIGN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DESIGN.md; sourceTree = "<group>"; };
 		EED9BB151E2E5BD100D2668D /* PROCESS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = PROCESS.md; sourceTree = "<group>"; };
 		EED9BB161E2E5BD100D2668D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		EED9BB1A1E30DD6100D2668D /* DetailsGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsGroupViewController.swift; sourceTree = "<group>"; };
+		EEEEEF3A1E41E19600BFBF9A /* REPORT.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = REPORT.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +92,6 @@
 		EEC32D7A1E2CCF7D00D76EBC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EED9BB1A1E30DD6100D2668D /* DetailsGroupViewController.swift */,
 				EED0DFC21E250ADA00F33D32 /* LoginViewController.swift */,
 				EED0DFD61E2784B800F33D32 /* GoalsViewController.swift */,
 				EED0DFD81E27B40400F33D32 /* RankingViewController.swift */,
@@ -144,9 +143,10 @@
 			isa = PBXGroup;
 			children = (
 				EED9BB141E2E5BD100D2668D /* DESIGN.md */,
-				EED9BB151E2E5BD100D2668D /* PROCESS.md */,
 				EED9BB161E2E5BD100D2668D /* README.md */,
+				EED9BB151E2E5BD100D2668D /* PROCESS.md */,
 				EE4AA8DD1E3F4BE40040477B /* AUDIT.md */,
+				EEEEEF3A1E41E19600BFBF9A /* REPORT.md */,
 				EED0DFBF1E250ADA00F33D32 /* GOals */,
 				EED0DFBE1E250ADA00F33D32 /* Products */,
 				6D8FAADBE55FC48C2A2905B6 /* Pods */,
@@ -309,9 +309,9 @@
 			files = (
 				EEC32D701E295B4400D76EBC /* Goal.swift in Sources */,
 				EED0DFC31E250ADA00F33D32 /* LoginViewController.swift in Sources */,
-				EED9BB1B1E30DD6100D2668D /* DetailsGroupViewController.swift in Sources */,
 				EED0DFC11E250ADA00F33D32 /* AppDelegate.swift in Sources */,
 				EED9BB171E2E5BD100D2668D /* DESIGN.md in Sources */,
+				EEEEEF3B1E41E19600BFBF9A /* REPORT.md in Sources */,
 				EE09BCC31E2CF86C0004D6C2 /* GoalsCell.swift in Sources */,
 				EED9BB191E2E5BD100D2668D /* README.md in Sources */,
 				EE4AA8DE1E3F4BE40040477B /* AUDIT.md in Sources */,

@@ -12,7 +12,6 @@ import FirebaseAuth
 
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    
     // MARK: Properties
     @IBOutlet weak var tableView: UITableView!
     var goal: Goal!
@@ -23,6 +22,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var points: Int = 0
     var goalRef =  FIRDatabase.database().reference(withPath: "goals")
     let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
+    
+    var goalName: String = ""
+    var goalPoints: Int = 0
+    var goalGroup: String = ""
+
     
     // MARK: Outlets
     @IBOutlet weak var nameUser: UILabel!
@@ -41,13 +45,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
 
         currentUser.observeSingleEvent(of: .value, with: { snapshot in
-            //var points: Int = 0
             let value = snapshot.value as? NSDictionary
             self.group = value?["group"] as! String
             self.name = value?["email"] as! String
             self.points = value?["points"] as! Int
-            let points = self.points
-            
             self.nameUser.text! = self.name
             
             self.goalRef.queryOrdered(byChild: "completedBy").queryEqual(toValue: self.name).observe(.value, with:
@@ -58,7 +59,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     for item in snapshot.children {
                         
                         let goalItem = Goal(snapshot: item as! FIRDataSnapshot)
+                        
                         newItems.append(goalItem)
+                        
+                        self.goalName = goalItem.name
+
                     }
                     
                     self.items = newItems
@@ -71,14 +76,17 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // hide empty cells of tableview
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
         self.tableView.reloadData()
        
         currentUser.child("points").observeSingleEvent(of: .value, with: { (snapshot) in
             
             self.pointsUser.text! = String(self.points) + " XP"
-        
+            
         })
     }
+    
+    // MARK: UITableView Delegate methods
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
@@ -87,11 +95,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DetailCell
-        let goal = items[indexPath.row]
         let points = self.points
-        
-        cell.completedGoalLabel.text = self.name
-        cell.completedPointsLabel.text = String(points) + " XP"
+        let goal = items[indexPath.row]
+
+        cell.completedGoalLabel.text = goal.name
+        cell.completedPointsLabel.text = String(goal.points) + " xp"
         
         return cell
     }

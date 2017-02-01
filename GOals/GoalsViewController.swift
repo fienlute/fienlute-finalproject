@@ -12,9 +12,6 @@ import FirebaseAuth
 
 class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // MARK: Outlets
-    @IBOutlet weak var tableView: UITableView!
-    
     // MARK: Properties
     var senderDisplayName: String?
     var goalRef =  FIRDatabase.database().reference(withPath: "goals")
@@ -30,6 +27,9 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var pointsString: String = ""
     var completedBy: String = ""
        
+    // MARK: Outlets
+    @IBOutlet weak var tableView: UITableView!
+    
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +84,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     }
     
-
     // MARK :Actions
 
     @IBAction func addGoalDidTouch(_ sender: Any) {
@@ -95,14 +94,20 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let saveAction = UIAlertAction(title: "Save",
                                        style: .default) { action in
+                                        
                                         let goalField = alert.textFields![0].text
                                         let pointsField: Int = Int(alert.textFields![1].text!)!
+                                        
+                                        if goalField! == "" {
+                                            self.errorAlert(title: "Error", alertCase: "Fill in all the fields")
+                                        } else {
                                         
                                         let goalItem = Goal(name: goalField!, addedByUser: self.name, completed: false, points: pointsField, group: self.group, completedBy: self.completedBy)
                     
                                         let goalItemRef = self.goalRef.child((goalField?.lowercased())!)
                                         self.items.append(goalItem)
                                         goalItemRef.setValue(goalItem.toAnyObject())
+                                        }
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -143,7 +148,14 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.textLabel?.textColor = UIColor.gray
             cell.detailTextLabel?.textColor = UIColor.gray
             
+            
         }
+    }
+    
+    func errorAlert(title: String, alertCase: String) {
+        let alert = UIAlertController(title: title, message: alertCase , preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: UITableView Delegate methods
@@ -188,12 +200,12 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         goal.ref?.updateChildValues([
             "completed": toggledCompletion,
             ])
-        
+
         let newCompletedBy = self.name
         completedBy = newCompletedBy
+//        goal.ref?.child("completedBy").setValue(completedBy)
         
         goal.ref?.updateChildValues(["completedBy" : completedBy])
-
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -202,5 +214,4 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             goal.ref?.removeValue()
         }
     }
-
 }
