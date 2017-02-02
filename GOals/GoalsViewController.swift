@@ -32,56 +32,12 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FIRAuth.auth()!.addStateDidChangeListener { auth, user in
-            guard let user = user else { return }
-            self.user = User(authData: user)
-            
-            print("UID: \(self.user.uid)")
-            
-            let currentUser = FIRDatabase.database().reference(withPath: "Users").child(self.user.uid)
-
-            currentUser.observeSingleEvent(of: .value, with: { snapshot in
-                
-                let value = snapshot.value as? NSDictionary
-                
-                print("GROUP: \(self.user.group)")
-                
-                self.group = value?["group"] as! String
-                self.name = value?["email"] as! String
-                self.pointsInt = value?["points"] as! Int
-                self.pointsString = String(self.pointsInt)
-                
-                // Put goal into array.
-            
-                    
-                self.goalRef.queryOrdered(byChild: "group").queryEqual(toValue: self.group).observe(.value, with:
-                    { (snapshot) in
-                        
-                        self.goalRef.queryOrdered(byChild: "completedBy").queryEqual(toValue: "").observe(.value, with:
-                        { (snapshot) in
-                        
-                        var newItems: [Goal] = []
-                        
-                        for item in snapshot.children {
-                            
-                            let goalItem = Goal(snapshot: item as! FIRDataSnapshot)
-
-                            newItems.append(goalItem)
-                            
-                        }
-                        
-                        self.items = newItems
-                        self.tableView.reloadData()
-                        
-                        })
-                    
-                    })
-                })
-        }
-        
         // Set background mountains.
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
         title = "Goals"
+        
+        retrieveUserDataFirebase(retrieveGoalDataFirebase())
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -158,6 +114,53 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.present(alert, animated: true, completion: nil)
     }
     
+    func retrieveUserDataFirebase(){
+        FIRAuth.auth()!.addStateDidChangeListener { auth, user in
+            guard let user = user else { return }
+            self.user = User(authData: user)
+            
+            print("UID: \(self.user.uid)")
+            
+            let currentUser = FIRDatabase.database().reference(withPath: "Users").child(self.user.uid)
+            
+            currentUser.observeSingleEvent(of: .value, with: { snapshot in
+                
+                let value = snapshot.value as? NSDictionary
+                
+                print("GROUP: \(self.user.group)")
+                
+                self.group = value?["group"] as! String
+                self.name = value?["email"] as! String
+                self.pointsInt = value?["points"] as! Int
+                self.pointsString = String(self.pointsInt)
+                
+                })
+            }
+    }
+    
+    func retrieveGoalDataFirebase() {
+        
+        self.goalRef.queryOrdered(byChild: "group").queryEqual(toValue: self.group).observe(.value, with:
+            { (snapshot) in
+                
+                self.goalRef.queryOrdered(byChild: "completedBy").queryEqual(toValue: "").observe(.value, with:
+                    { (snapshot) in
+                        
+                        var newItems: [Goal] = []
+                        
+                        for item in snapshot.children {
+
+                            let goalItem = Goal(snapshot: item as! FIRDataSnapshot)
+                            newItems.append(goalItem)
+                        }
+                        self.items = newItems
+                        self.tableView.reloadData()
+                })
+        })
+    }
+    
+                // Put goal into array.
+    
     // MARK: UITableView Delegate methods
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -201,7 +204,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         goal.ref?.updateChildValues(["completedBy" : newCompletedBy])
         
         sleep(2)
-
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
