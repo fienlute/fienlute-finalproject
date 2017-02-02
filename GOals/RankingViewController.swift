@@ -15,6 +15,7 @@ import FirebaseAuth
 class RankingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Properties
+    
     var goalRef =  FIRDatabase.database().reference(withPath: "goals")
     let usersRef = FIRDatabase.database().reference(withPath: "Users")
     var user: User!
@@ -26,9 +27,11 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     var goalGroup: String = ""
     
     // MARK: Outlets
+    
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: View Lifecycle
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         tabBarItem = UITabBarItem(title: "Ranking", image: UIImage(named: "icon-cover"), tag: 2)
@@ -38,7 +41,6 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
-        
         retrieveUserDataFirebase(retrieveGoalDataFirebase())
 
     }
@@ -49,7 +51,8 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
-    // MARK: Actions
+    // MARK: Functions
+    
     func retrieveUserDataFirebase() {
         let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
         
@@ -95,7 +98,7 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     // MARK: UITableView Delegate methods
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }

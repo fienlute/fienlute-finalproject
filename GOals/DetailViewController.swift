@@ -2,6 +2,8 @@
 //  DetailViewController.swift
 //  GOals
 //
+//  De gebruiker krijgt zijn/haar puntensaldo te zien en de doelen die hij/zij behaald heeft.
+//
 //  Created by Fien Lute on 12-01-17.
 //  Copyright © 2017 Fien Lute. All rights reserved.
 //
@@ -13,6 +15,7 @@ import FirebaseAuth
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: Properties
+    
     var goal: Goal!
     var items: [Goal] = []
     var group: String = ""
@@ -25,11 +28,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
     
     // MARK: Outlets
+    
     @IBOutlet weak var nameUser: UILabel!
     @IBOutlet weak var pointsUser: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: View Lifecycle
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         tabBarItem = UITabBarItem(title: "Detail", image: UIImage(named: "icon-cover"), tag: 2)
@@ -49,6 +54,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     // MARK: Methods
+    
     func retrieveUserDataFirebase() {
         currentUser.observeSingleEvent(of: .value, with: { snapshot in
             let value = snapshot.value as? NSDictionary
@@ -77,6 +83,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     // MARK: UITableView Delegate methods
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }

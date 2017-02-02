@@ -49,15 +49,19 @@ de doelen van de groep van de current user worden laten zien in de GoalsVC, de u
 
 #week 4
 
-## maandag
+## maandag 29 januari
 login gefixt, had ik stuk gemaakt. De segue bleek niet te kloppen en hij gaf niet de goede info mee. Verder code opgeschoond. 
 
-## dinsdag 
-code verder opgeschoond: dode code eruit, onnodige comments eruit
+## dinsdag 30 janurai
+Meer code in functies gezet, bijvoorbeeld het opalen van Firebase data.
 
-## woensdag 
+## woensdag 31 januari
+Code verder opgeschoond: dode code eruit, onnodige comments eruit. Begonnen met het report schrijven. 
 
+## donderdag 1 februai
+Report afgemaakt, readme geschreven kleine dingen opgeschoond, comments gemaakt.
 
+ 
 
 
 

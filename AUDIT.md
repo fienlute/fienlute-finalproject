@@ -2,7 +2,6 @@
 ###write short units of code 
 Zet meer code in functies, bijvoorbeeld het ophalen van data uit de database. 
 
-
 ###write clean code 
 haal onnodige comments en code die uitgecommend is eruit.
 

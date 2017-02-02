@@ -8,7 +8,7 @@
 
 De app 'GOals' is een app waarin de gebruiker op speelse wijze wordt gestimuleerd om zijn/haar doelen/dromen te bereiken. De gebruiker van deze app kan een account aanmaken en zelf een nieuwe groep aanmaken of aan een bestaande groep deelnemen. Binnen deze groep kan elke gebruiker doelen toevoegen, waar punten aan gekoppeld zijn. Wanneer je als gebruiker een doel hebt bereikt kun je het afvinken en worden de punten van het doel toegevoegd aan je puntensaldo. Zo zal er een klassement ontstaan, gesorteerd op wie er de meeste punten heeft. Op deze manier zullen gebruikers dromen en doelen niet langer uitstellen omdat ze 'geen tijd hebben'; ze zullen er tijd voor maken. 
 
-
+![alt tag] (https://github.com/fienlute/programmeerproject/blob/master/doc/screenshots%20final%20product.png)
 
 ## Design
 

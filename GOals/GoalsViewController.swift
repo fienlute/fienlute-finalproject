@@ -16,6 +16,7 @@ import FirebaseAuth
 class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Properties
+    
     var senderDisplayName: String?
     var goalRef =  FIRDatabase.database().reference(withPath: "goals")
     let usersRef = FIRDatabase.database().reference(withPath: "online")
@@ -29,9 +30,11 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var completedBy: String = ""
        
     // MARK: Outlets
+    
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,13 +46,12 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // hide empty cells of tableview
+        // hides empty cells of tableview
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-
     }
     
-    // MARK : Actions 
-
+    // MARK : Actions
+    
     @IBAction func addGoalDidTouch(_ sender: Any) {
    
         let alert = UIAlertController(title: "Goal",
@@ -105,7 +107,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    // MARK: Methods
+    // MARK: Functions
     
     func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
         if !isCompleted {
@@ -163,13 +165,12 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         })
     }
     
-    /// Checks if input in textField is integer
     func isNumeric(a: String) -> Bool {
         return Double(a) == nil
     }
     
     // MARK: UITableView Delegate methods
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -209,7 +210,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         currentUser.child("points").setValue(pointsInt)
         
         goal.ref?.updateChildValues(["completedBy" : newCompletedBy])
-        
         sleep(2)
     }
 

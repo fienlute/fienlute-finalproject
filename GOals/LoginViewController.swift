@@ -15,13 +15,16 @@ import FirebaseAuth
 class LoginViewController: UIViewController {
 
     // MARK: Properties
+    
     var ref: FIRDatabaseReference!
     
     // MARK: Outlets
+    
     @IBOutlet weak var textFieldLoginEmail: UITextField!
     @IBOutlet weak var textFieldLoginPassword: UITextField!
     
     // MARK: View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +42,7 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: Actions
+    
     @IBAction func loginDidTouch(_ sender: Any) {
         
         FIRAuth.auth()!.signIn(withEmail: textFieldLoginEmail.text!,
@@ -103,9 +107,8 @@ class LoginViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    // MARK: Methods
+    // MARK: Functions
     
-    /// gives alert with title and message
     func errorAlert(title: String, alertCase: String) {
     let alert = UIAlertController(title: title, message: alertCase , preferredStyle: UIAlertControllerStyle.alert)
     alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
