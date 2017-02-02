@@ -19,12 +19,12 @@ Het eerste scherm is de LoginViewController. Hier kan de gebruiker inloggen/regi
 
 ### Sources 
 https://www.raywenderlich.com/139322/firebase-tutorial-getting-started-2   
-(used in LoginViewController en User.swift)  
+    (used in LoginViewController en User.swift)  
 
-https://code.tutsplus.com/tutorials/ios-from-scratch-with-swift-exploring-tab-bar-controller--cms-25470   (tab-bar tutorial)  
+https://code.tutsplus.com/tutorials/ios-from-scratch-with-swift-exploring-tab-bar-controller--cms-25470     (tab-bar tutorial)  
 
 https://grokswift.com/transparent-table-view/   
-(hide empty cells in tableview)  
+    (hide empty cells in tableview)  
 
 
 
