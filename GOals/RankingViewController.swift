@@ -21,11 +21,11 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     var name: String = ""
     var points: Int = 0
     var pointsArray = [Int]()
+    var goalGroup: String = ""
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,22 +40,37 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
             self.group = value?["group"] as! String
             self.name = value?["email"] as! String
             self.points = value?["points"] as! Int
+                
+            let sortedRef = FIRDatabase.database().reference(withPath: "Users").queryOrdered(byChild: "group").queryEqual(toValue : self.group)
+            
+            sortedRef.observe(.value, with: { snapshot in
+                
+                var newItems: [User] = []
+            
+                for item in snapshot.children {
 
-            self.usersRef.queryOrdered(byChild: "group").queryEqual(toValue: self.group).observe(.value, with:
-                { (snapshot) in
-    
-                    var newItems: [User] = []
-                    
+                    let userItem = User(snapshot: item as! FIRDataSnapshot)
+                    newItems.append(userItem)
+
+                }
+                
+                self.items = newItems
+                
+                self.usersRef.queryOrdered(byChild: "points").observe(.value, with: { snapshot in
+                
+                    var orderedItems: [User] = []
+
                     for item in snapshot.children {
                         
-                        
                         let userItem = User(snapshot: item as! FIRDataSnapshot)
-                        newItems.append(userItem)
+                        orderedItems.append(userItem)
                     }
-                    
-                    self.items = newItems
+                    orderedItems = orderedItems.reversed()
+                    self.items = orderedItems
                     self.tableView.reloadData()
-                    
+                
+                })
+                
             })
         })
     }
