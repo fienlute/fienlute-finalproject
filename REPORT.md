@@ -17,18 +17,13 @@ overview
 ### LoginViewController
 Op de LoginViewController kan de gebruiker (user) een account aanmaken (button: signup) of inloggen als ze al een account hebben (button: login). Als er een account wordt aangemaakt moet de user naast een emailadres en een wachtwoord, ook een groep opgeven of aanmaken waaraan hij/zij wil deelnemen. De users worden opgeslagen in de realtime database Firebase. Om naast het emailadres aanvullende informatie toe te kunnen voegen aan het userssaccount heb ik een struct gemaakt voor users (User.swift). Hierin wordt de volgende informatie van de user opgeslagen: 
 
-| User   | Values | Uitleg|
-| -------|:------:| -----:|
-| uid    | String |   |
-| email  | String |   |
-| group  | String |   |
-| point  | Int    |   |
+| User   | Values | 
+| -------|:------:| 
+| uid    | String |   
+| email  | String |   
+| group  | String |   
+| points | Int    |   
 
-    * een unieke user id (uid)
-    * het emailadres
-    * de groep waarin de user zit 
-    * het aantal punten dat de user heeft behaald. 
-    
 ### GoalsViewController
 Na het aanmaken van een account wordt de user automatisch ingelogd. Als de gebruiker succesvol is ingelogd dan komt hij/zij op de GoalsViewController terecht. Op deze viewcontroller zijn alle doelen van de groep van de huidige gebruiker te zien. Er wordt over alle doelen in Firebase geloopt en gekeken of de groep van het doel gelijk is aan de groep van de huidige gebruiker. Als dit het geval is dan wordt het doel getoond in de tableview van deze viewcontroller. Op deze pagina kan de gebruiker niet alleen alle toegevoegde doelen van de gebruikers van de groep zien, maar ook zelf doelen toevoegen. Wanneer de user een doel toe wil voegen moet hij/zij op het plus teken drukken in de hoek van de viewcontroller. Hierna verschijnt er een alert waarin hij/zij de naam van het doel en het aantal punten dat het waard is moet opgeven. Als een doel opgeslagen wordt (button: Save), dan wordt het doel opgeslagen in Firebase. Om alle informatie van zo'n doel op te kunnen slaan heb ik een struct voor het doel aangemaakt (Goal.swift). Hierin wordt de volgende informatie van het doel opgeslagen: 
 
@@ -38,6 +33,15 @@ Na het aanmaken van een account wordt de user automatisch ingelogd. Als de gebru
     * of het doel is behaald door een van de gebruikers
     * door welke gebruiker het doel behaald is
     * de punten die het doel waard is 
+
+| Goal       | Values | 
+| -------    |:------:| 
+| name       | String |     
+| addedByUser| String |       
+| completed  | Bool   |       
+| points     | Int    |      
+| group      | String |      
+| completedBy| String | 
 
 Wanneer een gebruiker een doel heeft behaald kan hij/zij op de cell van het doel klikken, waarna het completedBy child van het doel wordt bijgewerkt naar het emailadres van de huidige gebruiker. Wanneer een doel is behaald wordt deze verwijderd uit de GoalsViewController tableview. Hierdoor krijgt alleen de gebruiker die een doel als eerste behaald de punten opgeteld bij zijn/haar puntensaldo. 
 
