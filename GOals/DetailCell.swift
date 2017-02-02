@@ -14,7 +14,6 @@ class DetailCell: UITableViewCell {
     // MARK: Outlets
     @IBOutlet weak var completedGoalLabel: UILabel!
     @IBOutlet weak var completedPointsLabel: UILabel!
-    @IBOutlet weak var dateCompletedLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

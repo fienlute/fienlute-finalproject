@@ -21,7 +21,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var points: Int = 0
     var goalRef =  FIRDatabase.database().reference(withPath: "goals")
     let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
-    
     var goalName: String = ""
     var goalPoints: Int = 0
     var goalGroup: String = ""
@@ -91,12 +90,19 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DetailCell
+        
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         let goal = items[indexPath.row]
 
         cell.completedGoalLabel.text = goal.name
         cell.completedPointsLabel.text = String(goal.points) + " xp"
         
         return cell
+        
+        
+
     }
 }

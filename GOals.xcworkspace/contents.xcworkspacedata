@@ -5,6 +5,21 @@
       location = "group:GOals.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:AUDIT.md">
+   </FileRef>
+   <FileRef
+      location = "group:DESIGN.md">
+   </FileRef>
+   <FileRef
+      location = "group:PROCESS.md">
+   </FileRef>
+   <FileRef
+      location = "group:README.md">
+   </FileRef>
+   <FileRef
+      location = "group:REPORT.md">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

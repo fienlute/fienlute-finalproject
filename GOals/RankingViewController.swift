@@ -96,6 +96,8 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RankingCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+
         let user = items[indexPath.row]
         let points = user.points
 

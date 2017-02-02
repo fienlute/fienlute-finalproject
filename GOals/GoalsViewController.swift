@@ -166,6 +166,10 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GoalsCell
+
+        cell.selectedBackgroundView = UIView(frame: cell.frame)
+        cell.selectedBackgroundView?.backgroundColor = UIColor.blue
+        
         let goal = items[indexPath.row]
         
         cell.goalLabel.text = goal.name
@@ -187,7 +191,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let newCompletedBy = self.name
         let currentUser = FIRDatabase.database().reference(withPath: "Users").child(self.user.uid)
         toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-        sleep(2)
+        
         goal.ref?.updateChildValues(["completed": toggledCompletion])
 
         pointsInt = currentPointsInt
@@ -195,6 +199,8 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         currentUser.child("points").setValue(pointsInt)
         
         goal.ref?.updateChildValues(["completedBy" : newCompletedBy])
+        
+        sleep(2)
 
     }
 
