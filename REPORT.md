@@ -1,20 +1,13 @@
-# geleerd
-zelf problemen oplossen 
-firebase gebruiken 
-
-# problemen
-groepen in firebase 
-login
-volgorde tableview
-Segmentation fault 11
-
+# GOals 
+### Fien Lute
+### Programmeer Project 
+### 10752862
 
 ## Description
 
 De app 'GOals' is een app waarin de gebruiker op speelse wijze wordt gestimuleerd om zijn/haar doelen/dromen te bereiken. De gebruiker van deze app kan een account aanmaken en zelf een nieuwe groep aanmaken of aan een bestaande groep deelnemen. Binnen deze groep kan elke gebruiker doelen toevoegen, waar punten aan gekoppeld zijn. Wanneer je als gebruiker een doel hebt bereikt kun je het afvinken en worden de punten van het doel toegevoegd aan je puntensaldo. Zo zal er een klassement ontstaan, gesorteerd op wie er de meeste punten heeft. Op deze manier zullen gebruikers dromen en doelen niet langer uitstellen omdat ze 'geen tijd hebben'; ze zullen er tijd voor maken. 
 
 screenshot
-
 
 ## Design
 
@@ -49,10 +42,11 @@ Op de RankingViewController (middelste tabbarbutton) zijn alle gebruikers te zie
 Op de DetailViewController (meest rechter tabbarbutton) zijn het emailaders, het puntensaldo en alle doelen die de gebruiker behaald heeft te zien. Om de behaalde doelen van de huidige gebruiker te laten zien wordt er over alle opgeslagen doelen in Firebase geloopt en gekeken of het completedBy child van het Goal object gelijk is aan het emailadres van de huidige gebruiker. Als dit het geval is worden deze toegevoegd aan een array, die vervolgens geprint wordt in de tableview op deze viewcontroller. 
 
 ## Challenges / changes 
-Ik heb in het begin veel moeite gehad met Firebase. Vooral het ophalen van opgeslagen informatie vond ik lastig. Hier ben 
+Ik heb in het begin veel moeite gehad met Firebase. Vooral het ophalen van opgeslagen informatie vond ik lastig. Doordat ik met meerdere gebruikers en groepen werk werd het gebruik van Firebase een stuk complexer dan dat ik tot nu toe gewend was. Door de moeite die ik had met Firebase ben ik veel tijd verloren. Ik heb daarom niet méér kunnen behalen dan mijn minimum valuable product. Ook heb ik de beslissing gemaakt om mijn oorspronkelijke idee van het opslaan in groepen om te gooien. In plaats van users in een groep op te slaan, heb ik ervoor gekozen om de groep van de user in de user struct op te slaan. 
+Ik heb deze maand geleerd om om te gaan met Firebase: het opslaan en ophalen van informatie en deze informatie verwerken in het design van mijn app. Ook ben ik het gebruik van stucts beter gaan begrijpen en de relatie tussen de verschillende viewcontrollers. We hadden per week niet veel hulp, waardoor ik heb geleerd om zelf veel problemen op te lossen en om te gaan met errors. Door standup meetings ben ik beter geworden in het uitleggen van de constructies en het design van mijn app aan medestudenten, waardoor zij mij konden helpen. Hierdoor werd ik ook beter in het lezen en begrijpen van andermans code, waardoor ik mijn groepsleden ook kon helpen. 
 
 ## Defend descisions / perfect world
-Door de moeite die ik had met Firebase ben ik veel tijd verloren. Ik heb daarom niet meer kunnen behalen dan mijn minimum valuable product. Ook heb ik ervoor gekozen om de gebruikers niet o
+Ik heb gekozen voor kwaliteit over kwantiteit door niet meer functionaliteit te implementeren dan mijn minimale product. Ik denk dat dit een goede keuze is geweest, omdat betere code voor mij belangrijker is dan meer functies. Daarnaast denk ik dat het voor mij slim is geweest om niet meer te doen met Firebase dan nodig was voor mijn minimale product. Omdat ik al zo veel moeite had met Firebase denk ik dat ik daar te lang over had gedaan. 
 
 
 
