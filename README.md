@@ -12,7 +12,8 @@ Het eerste scherm is de LoginViewController. Hier kan de gebruiker inloggen/regi
 
 ### Screenshots
 
-![alt tag] (https://github.com/fienlute/programmeerproject/blob/master/doc/screenshots%20goals.png)
+![alt tag] (https://github.com/fienlute/programmeerproject/blob/master/doc/screenshots%20final%20product.png)
+
 ### bettercodehub
 [![BCH compliance](https://bettercodehub.com/edge/badge/fienlute/programmeerproject)](https://bettercodehub.com)
 
