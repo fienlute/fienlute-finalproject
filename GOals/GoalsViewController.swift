@@ -35,7 +35,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
         title = "Goals"
         
-        retrieveUserDataFirebase()
+        retrieveUserDataFirebase(retrieveGoalDataFirebase())
         
     }
     

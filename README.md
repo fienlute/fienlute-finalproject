@@ -10,7 +10,7 @@ De app 'GOals' is een app waarin de gebruiker op speelse wijze wordt gestimuleer
 ### Description
 Het eerste scherm is de LoginViewController. Hier kan de gebruiker inloggen/registreren. De users (User.swift) zijn/worden opgeslagen in de realtime database Firebase. Na het inloggen/registreren wordt de user doorverwezen naar de GoalsViewController. Hier zijn alle doelen te zien die toegevoegd zijn in de groep van de huidige gebruiker. De gebruiker kan op deze pagina nieuwe doelen (Goal.swift) toevoegen door op het + teken te drukken. De doelen worden opgeslagen in Firebase. Ook kan de gebruiker uitloggen op deze pagina. In de tab-bar kan de gebruiker navigeren naar de RankingViewController en de DetailViewController. Op de RankingViewController zijn alle gebruikers van de groep van de huidige gebruiker weergegeven met hun puntensaldo. De gebruikers zijn geordend op hoogte van puntensaldo. Op de DetailViewController zijn het puntensaldo en de behaalde doelen van de huidige gebruiker te zien. 
 
-### Component
+### Screenshots
 
 
 
