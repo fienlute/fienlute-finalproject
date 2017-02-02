@@ -32,7 +32,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set background mountains.
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
         title = "Goals"
         
@@ -46,7 +45,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     }
     
-    // MARK :Actions
+    // MARK : Actions 
 
     @IBAction func addGoalDidTouch(_ sender: Any) {
    
@@ -102,6 +101,8 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print ("Error signing out: %@", signOutError)
         }
     }
+    
+    // MARK: Methods
     
     func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
         if !isCompleted {

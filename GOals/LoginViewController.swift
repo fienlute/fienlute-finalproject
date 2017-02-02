@@ -2,6 +2,10 @@
 //  LoginViewController.swift
 //  GOals
 //
+// 
+//
+//
+//
 //  Created by Fien Lute on 10-01-17.
 //  Copyright © 2017 Fien Lute. All rights reserved.
 //
@@ -19,12 +23,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var textFieldLoginEmail: UITextField!
     @IBOutlet weak var textFieldLoginPassword: UITextField!
     
+    // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ref =  FIRDatabase.database().reference(withPath: "Users")
-        
-       // Set background to mountains.
+        textFieldLoginPassword.isSecureTextEntry = true
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
         
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
@@ -37,7 +41,6 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: Actions
-    
     @IBAction func loginDidTouch(_ sender: Any) {
         
         FIRAuth.auth()!.signIn(withEmail: textFieldLoginEmail.text!,

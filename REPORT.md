@@ -27,13 +27,6 @@ Op de LoginViewController kan de gebruiker (user) een account aanmaken (button: 
 ### GoalsViewController
 Na het aanmaken van een account wordt de user automatisch ingelogd. Als de gebruiker succesvol is ingelogd dan komt hij/zij op de GoalsViewController terecht. Op deze viewcontroller zijn alle doelen van de groep van de huidige gebruiker te zien. Er wordt over alle doelen in Firebase geloopt en gekeken of de groep van het doel gelijk is aan de groep van de huidige gebruiker. Als dit het geval is dan wordt het doel getoond in de tableview van deze viewcontroller. Op deze pagina kan de gebruiker niet alleen alle toegevoegde doelen van de gebruikers van de groep zien, maar ook zelf doelen toevoegen. Wanneer de user een doel toe wil voegen moet hij/zij op het plus teken drukken in de hoek van de viewcontroller. Hierna verschijnt er een alert waarin hij/zij de naam van het doel en het aantal punten dat het waard is moet opgeven. Als een doel opgeslagen wordt (button: Save), dan wordt het doel opgeslagen in Firebase. Om alle informatie van zo'n doel op te kunnen slaan heb ik een struct voor het doel aangemaakt (Goal.swift). Hierin wordt de volgende informatie van het doel opgeslagen: 
 
-    * de naam van het doel
-    * door welke gebruiker het doel is toegevoegd
-    * de groep waarin deze gebruiker zit 
-    * of het doel is behaald door een van de gebruikers
-    * door welke gebruiker het doel behaald is
-    * de punten die het doel waard is 
-
 | Goal       | Values | 
 | -------    |:------:| 
 | name       | String |     
@@ -56,9 +49,12 @@ Op de DetailViewController (meest rechter tabbarbutton) zijn het emailaders, het
 ## Challenges / changes 
 Ik heb in het begin veel moeite gehad met Firebase. Vooral het ophalen van opgeslagen informatie vond ik lastig. Doordat ik met meerdere gebruikers en groepen werk werd het gebruik van Firebase een stuk complexer dan dat ik tot nu toe gewend was. Door de moeite die ik had met Firebase ben ik veel tijd verloren. Ik heb daarom niet méér kunnen behalen dan mijn minimum valuable product. Ook heb ik de beslissing gemaakt om mijn oorspronkelijke idee van het opslaan in groepen om te gooien. In plaats van users in een groep op te slaan, heb ik ervoor gekozen om de groep van de user in de user struct op te slaan. Op een gegeven moment lukte het wel om te registreren, maar niet meer om in te loggen. Ik dacht dat dit eraan lag dat ik de data van de ingelogde gebruiker niet goed ophaalde vanuit Firebase. Dit bleek echter aan een foutieve segue te liggen. 
 Ik heb deze maand geleerd om om te gaan met Firebase: het opslaan en ophalen van informatie en deze informatie verwerken in het design van mijn app. Ook ben ik het gebruik van stucts beter gaan begrijpen en de relatie tussen de verschillende viewcontrollers. We hadden per week niet veel hulp, waardoor ik heb geleerd om zelf veel problemen op te lossen en om te gaan met errors. Door standup meetings ben ik beter geworden in het uitleggen van de constructies en het design van mijn app aan medestudenten, waardoor zij mij konden helpen. Hierdoor werd ik ook beter in het lezen en begrijpen van andermans code, waardoor ik mijn groepsleden ook kon helpen. 
+Segmentation fault
 
 ## Defend descisions / perfect world
 Ik heb gekozen voor kwaliteit over kwantiteit door niet meer functionaliteit te implementeren dan mijn minimale product. Ik denk dat dit een goede keuze is geweest, omdat betere code voor mij belangrijker is dan meer functies. Daarnaast denk ik dat het voor mij slim is geweest om niet meer te doen met Firebase dan nodig was voor mijn minimale product. Omdat ik al zo veel moeite had met Firebase denk ik dat ik daar te lang over had gedaan. 
+Ik ben super blij dat ik mijn minale product volledig heb kunnen behalen. In een perfecte wereld waarin ik alle tijd zou hebben zou mijn app meer functionaliteit hebben. Ik zou er bijvoorbeeld voor zorgen dat 60% van de gebruikers in de groep een doel moet goed keuren voordat deze wordt toegevoegd aan de doelen pagina. Ook zou ik de optie geven om een foto toe te voegen wanneer een gebruiker een doel bereikt. De behaalde doelen worden gepresenteerd op een live feed, waar alle gebruikers kunnen zien wat de andere gebruikers uit de groep recent hebben behaald.   
+Ik heb ervoor gekozen om mijn app alleen in portrait orientation te presenteren. Dit is voor mijn app een goede keuze omdat ik gebruik maak van veel table views. Ik vind het zelf onhandig om een tableview te gebruiken in landscape orientation. 
 
 
 

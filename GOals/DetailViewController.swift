@@ -21,7 +21,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var points: Int = 0
     var goalPoints: Int = 0
     var goalGroup: String = ""
-    
     var goalRef =  FIRDatabase.database().reference(withPath: "goals")
     let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
     
@@ -29,10 +28,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var nameUser: UILabel!
     @IBOutlet weak var pointsUser: UILabel!
     @IBOutlet weak var tableView: UITableView!
-
+    
+    // MARK: View Lifecycle
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
         tabBarItem = UITabBarItem(title: "Detail", image: UIImage(named: "icon-cover"), tag: 2)
     }
 
@@ -44,12 +43,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        
         // hide empty cells of tableview
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         retrieveUserDataFirebase() 
     }
     
+    // MARK: Methods
     func retrieveUserDataFirebase() {
         currentUser.observeSingleEvent(of: .value, with: { snapshot in
             let value = snapshot.value as? NSDictionary
@@ -78,7 +77,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     // MARK: UITableView Delegate methods
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -94,8 +92,5 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.completedPointsLabel.text = String(goal.points) + " xp"
         
         return cell
-        
-        
-
     }
 }

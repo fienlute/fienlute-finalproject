@@ -25,22 +25,20 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
-
+    
+    // MARK: View Lifecycle
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        tabBarItem = UITabBarItem(title: "Ranking", image: UIImage(named: "icon-cover"), tag: 2)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // set background image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
         
         retrieveUserDataFirebase(retrieveGoalDataFirebase())
 
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        // Initialize Tab Bar Item
-        tabBarItem = UITabBarItem(title: "Ranking", image: UIImage(named: "icon-cover"), tag: 2)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +47,7 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
+    // MARK: Actions
     func retrieveUserDataFirebase() {
         let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
         
@@ -58,8 +57,6 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
             self.group = value?["group"] as! String
             self.name = value?["email"] as! String
             self.points = value?["points"] as! Int
-            
-            
         })
     }
     
@@ -91,9 +88,7 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
                 orderedItems = orderedItems.reversed()
                 self.items = orderedItems
                 self.tableView.reloadData()
-                
             })
-            
         })
     }
     
