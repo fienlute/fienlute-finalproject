@@ -47,13 +47,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // hide empty cells of tableview
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        
-        currentUser.child("points").observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            self.pointsUser.text! = String(self.points) + " xp"
-        })
-        
-        self.tableView.reloadData()
+        retrieveUserDataFirebase() 
     }
     
     func retrieveUserDataFirebase() {
@@ -76,6 +70,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         newItems.append(goalItem)
                     }
                     
+                    self.pointsUser.text! = String(self.points) + " xp"
                     self.items = newItems
                     self.tableView.reloadData()
             })

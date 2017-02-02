@@ -43,17 +43,17 @@ We hebben met ons groepje aan een stile guide gewerkt. Ik heb verder geprobeerd 
 Vandaag hebben we de styleguide afgemaakt. Verder heb ik gezorgd dat er groepen aangemaakt kunnen worden waarbinnen er doelen kunnen worden gemaakt. Ik durf op dit moment niet te comitten omdat ik heel veel veranderd heb en nog niet weet of alles nog werkt. Ik heb ervoor gekozen om in plaats van de users op te slaan binnen een groep, om aan elke user de groep mee te geven waar ze zich in inschreven. Zo kan ik over de users loopen en de users weergeven die in dezelfde groep zitten. 
   
 ##vrijdag 20 januari
-Vandaag heb ik een aantal error opgelost    
+Vandaag heb ik een aantal error opgelost. Het ophalen van data uit Firebase lukt me nog steeds niet.     
 
 #week 3 
 ##maandag 23 januari 
 Vandaag heb ik de user struct en de inlogviewcontroller aangepast zodat de user ook in de database + extra info wordt opgeslagen.
 
 ## dinsdag 24 januari 
-Nu wordt de user helemaal goed opgeslagen
+Nu wordt de user helemaal goed opgeslagen. Aynel heeft uitgelegd hoe je data goed uit Firebase haalt. Ook heeft Julian er even met mij naar gekeken. Ik snap het nog niet helemaal. 
 
 ## woensdag 25 januari
-de current userdata wordt opgehaald uit firebase en vergeleken met de userdata van de goals
+de current userdata kan eindelijk opgehaald worden uit firebase en vergeleken met de userdata van de goals
 
 ## donderdag 26 januari
 de doelen van de groep van de current user worden laten zien in de GoalsVC, de users van de groep worden laten zien in de RankingVC en de details van de current user worden laten zien in de DetailVC.

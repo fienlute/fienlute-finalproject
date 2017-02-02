@@ -36,7 +36,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
         title = "Goals"
         
-        retrieveUserDataFirebase(retrieveGoalDataFirebase())
+        retrieveUserDataFirebase()
         
     }
     
@@ -122,20 +122,17 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             guard let user = user else { return }
             self.user = User(authData: user)
             
-            print("UID: \(self.user.uid)")
-            
             let currentUser = FIRDatabase.database().reference(withPath: "Users").child(self.user.uid)
             
             currentUser.observeSingleEvent(of: .value, with: { snapshot in
                 
                 let value = snapshot.value as? NSDictionary
-                
-                print("GROUP: \(self.user.group)")
-                
                 self.group = value?["group"] as! String
                 self.name = value?["email"] as! String
                 self.pointsInt = value?["points"] as! Int
                 self.pointsString = String(self.pointsInt)
+                
+                self.retrieveGoalDataFirebase()
                 
                 })
             }

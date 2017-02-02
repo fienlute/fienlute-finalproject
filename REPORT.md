@@ -17,6 +17,14 @@ overview
 ### LoginViewController
 Op de LoginViewController kan de gebruiker (user) een account aanmaken (button: signup) of inloggen als ze al een account hebben (button: login). Als er een account wordt aangemaakt moet de user naast een emailadres en een wachtwoord, ook een groep opgeven of aanmaken waaraan hij/zij wil deelnemen. De users worden opgeslagen in de realtime database Firebase. Om naast het emailadres aanvullende informatie toe te kunnen voegen aan het userssaccount heb ik een struct gemaakt voor users (User.swift). Hierin wordt de volgende informatie van de user opgeslagen: 
 
+| User   | Values | Uitleg|
+| -------|:------:| -----:|
+| uid    | String | $1600 |
+| email  | String |   $12 |
+| group  | String |    $1 |
+| point  | Int    | $1600 |
+
+
     * een unieke user id (uid)
     * het emailadres
     * de groep waarin de user zit 
@@ -43,7 +51,7 @@ Op de RankingViewController (middelste tabbarbutton) zijn alle gebruikers te zie
 Op de DetailViewController (meest rechter tabbarbutton) zijn het emailaders, het puntensaldo en alle doelen die de gebruiker behaald heeft te zien. Om de behaalde doelen van de huidige gebruiker te laten zien wordt er over alle opgeslagen doelen in Firebase geloopt en gekeken of het completedBy child van het Goal object gelijk is aan het emailadres van de huidige gebruiker. Als dit het geval is worden deze toegevoegd aan een array, die vervolgens geprint wordt in de tableview op deze viewcontroller. 
 
 ## Challenges / changes 
-Ik heb in het begin veel moeite gehad met Firebase. Vooral het ophalen van opgeslagen informatie vond ik lastig. Doordat ik met meerdere gebruikers en groepen werk werd het gebruik van Firebase een stuk complexer dan dat ik tot nu toe gewend was. Door de moeite die ik had met Firebase ben ik veel tijd verloren. Ik heb daarom niet méér kunnen behalen dan mijn minimum valuable product. Ook heb ik de beslissing gemaakt om mijn oorspronkelijke idee van het opslaan in groepen om te gooien. In plaats van users in een groep op te slaan, heb ik ervoor gekozen om de groep van de user in de user struct op te slaan. 
+Ik heb in het begin veel moeite gehad met Firebase. Vooral het ophalen van opgeslagen informatie vond ik lastig. Doordat ik met meerdere gebruikers en groepen werk werd het gebruik van Firebase een stuk complexer dan dat ik tot nu toe gewend was. Door de moeite die ik had met Firebase ben ik veel tijd verloren. Ik heb daarom niet méér kunnen behalen dan mijn minimum valuable product. Ook heb ik de beslissing gemaakt om mijn oorspronkelijke idee van het opslaan in groepen om te gooien. In plaats van users in een groep op te slaan, heb ik ervoor gekozen om de groep van de user in de user struct op te slaan. Op een gegeven moment lukte het wel om te registreren, maar niet meer om in te loggen. Ik dacht dat dit eraan lag dat ik de data van de ingelogde gebruiker niet goed ophaalde vanuit Firebase. Dit bleek echter aan een foutieve segue te liggen. 
 Ik heb deze maand geleerd om om te gaan met Firebase: het opslaan en ophalen van informatie en deze informatie verwerken in het design van mijn app. Ook ben ik het gebruik van stucts beter gaan begrijpen en de relatie tussen de verschillende viewcontrollers. We hadden per week niet veel hulp, waardoor ik heb geleerd om zelf veel problemen op te lossen en om te gaan met errors. Door standup meetings ben ik beter geworden in het uitleggen van de constructies en het design van mijn app aan medestudenten, waardoor zij mij konden helpen. Hierdoor werd ik ook beter in het lezen en begrijpen van andermans code, waardoor ik mijn groepsleden ook kon helpen. 
 
 ## Defend descisions / perfect world
