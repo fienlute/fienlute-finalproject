@@ -58,17 +58,21 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                        style: .default) { action in
                                         
                                         let goalField = alert.textFields![0].text
-                                        let pointsField: Int = Int(alert.textFields![1].text!)!
+                                        let pointsString = alert.textFields![1].text
                                         
-                                        if goalField! == "" {
+           
+                                        if goalField! == "" || pointsString == "" {
                                             self.errorAlert(title: "Error", alertCase: "Fill in all the fields")
+                                        } else if self.isNumeric(a: pointsString!) {
+                                            self.errorAlert(title: "Error", alertCase: "the points field should contain only numbers")
                                         } else {
-                                        
+                                        let pointsField: Int = Int(pointsString!)!
                                         let goalItem = Goal(name: goalField!, addedByUser: self.name, completed: false, points: pointsField, group: self.group, completedBy: self.completedBy)
                     
                                         let goalItemRef = self.goalRef.child((goalField?.lowercased())!)
                                         self.items.append(goalItem)
                                         goalItemRef.setValue(goalItem.toAnyObject())
+                                        
                                         }
         }
         
@@ -94,7 +98,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let firebaseAuth = FIRAuth.auth()
         do {
             try firebaseAuth?.signOut()
-            // self.performSegue(withIdentifier: "toLogin", sender: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
@@ -157,6 +160,11 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         self.tableView.reloadData()
                 })
         })
+    }
+    
+    /// Checks if input in textField is integer
+    func isNumeric(a: String) -> Bool {
+        return Double(a) == nil
     }
     
     // MARK: UITableView Delegate methods

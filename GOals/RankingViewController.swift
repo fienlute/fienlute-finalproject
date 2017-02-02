@@ -20,7 +20,7 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     var group: String = ""
     var name: String = ""
     var points: Int = 0
-    var pointsArray = [Int]()
+    var pointsArray: [Int] = []
     var goalGroup: String = ""
     
     // MARK: Outlets
@@ -125,19 +125,4 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         _ = items[indexPath.row]
 
     }
-    
-
-
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        
-//        if segue.identifier == "detailSegue",
-//            
-//            let detailVC = segue.destination as? DetailViewController {
-//            let cellIndex = tableView.indexPathForSelectedRow?.row
-//            let user = self.items[cellIndex!]
-//            detailVC.name = user.email
-//            
-//        }
-//    }
-
  }

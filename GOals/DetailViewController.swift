@@ -19,11 +19,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var email: String = ""
     var name: String = ""
     var points: Int = 0
-    var goalRef =  FIRDatabase.database().reference(withPath: "goals")
-    let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
-    var goalName: String = ""
     var goalPoints: Int = 0
     var goalGroup: String = ""
+    
+    var goalRef =  FIRDatabase.database().reference(withPath: "goals")
+    let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
     
     // MARK: Outlets
     @IBOutlet weak var nameUser: UILabel!
@@ -33,7 +33,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        // Initialize Tab Bar Item.
         tabBarItem = UITabBarItem(title: "Detail", image: UIImage(named: "icon-cover"), tag: 2)
     }
 
@@ -41,32 +40,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
-
-        currentUser.observeSingleEvent(of: .value, with: { snapshot in
-            let value = snapshot.value as? NSDictionary
-            self.group = value?["group"] as! String
-            self.name = value?["email"] as! String
-            self.points = value?["points"] as! Int
-            self.nameUser.text! = self.name
-            
-            self.goalRef.queryOrdered(byChild: "completedBy").queryEqual(toValue: self.name).observe(.value, with:
-                { (snapshot) in
-                    
-                    var newItems: [Goal] = []
-                    
-                    for item in snapshot.children {
-                        
-                        let goalItem = Goal(snapshot: item as! FIRDataSnapshot)
-                        
-                        newItems.append(goalItem)
-                        
-                        self.goalName = goalItem.name
-                    }
-                    
-                    self.items = newItems
-                    self.tableView.reloadData()
-            })
-        })
+        retrieveUserDataFirebase()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +54,32 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
         
         self.tableView.reloadData()
+    }
+    
+    func retrieveUserDataFirebase() {
+        currentUser.observeSingleEvent(of: .value, with: { snapshot in
+            let value = snapshot.value as? NSDictionary
+            self.group = value?["group"] as! String
+            self.name = value?["email"] as! String
+            self.points = value?["points"] as! Int
+            self.nameUser.text! = self.name
+            
+            self.goalRef.queryOrdered(byChild: "completedBy").queryEqual(toValue: self.name).observe(.value, with:
+                { snapshot in
+                    
+                    var newItems: [Goal] = []
+                    
+                    for item in snapshot.children {
+                        
+                        let goalItem = Goal(snapshot: item as! FIRDataSnapshot)
+                        
+                        newItems.append(goalItem)
+                    }
+                    
+                    self.items = newItems
+                    self.tableView.reloadData()
+            })
+        })
     }
     
     // MARK: UITableView Delegate methods
