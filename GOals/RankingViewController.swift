@@ -2,6 +2,8 @@
 //  RankingViewController.swift
 //  GOals
 //
+//  De gebruiker krijgt alle gebruikers te zien van zijn/haar groep, gesorteerd op hoogte van puntensaldo. 
+//
 //  Created by Fien Lute on 12-01-17.
 //  Copyright © 2017 Fien Lute. All rights reserved.
 //

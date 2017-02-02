@@ -2,6 +2,9 @@
 //  GoalsViewController.swift
 //  GOals
 //
+//  De gebruiker krijgt de toegevoegde doelen te zien van de groep waar hij/zij in zit. Ook kan hij/zij zelf 
+//  doelen toevoegen of afvinken. Als een doel wordt afgevinkt, dan worden de punten opgeteld bij het puntensaldo van de  gebruiker.
+//
 //  Created by Fien Lute on 12-01-17.
 //  Copyright © 2017 Fien Lute. All rights reserved.
 //

@@ -2,9 +2,7 @@
 //  LoginViewController.swift
 //  GOals
 //
-// 
-//
-//
+//  De gebruiker kan op deze viewcontroller inloggen met een bestaand account of een nieuw account aanmaken.
 //
 //  Created by Fien Lute on 10-01-17.
 //  Copyright © 2017 Fien Lute. All rights reserved.
