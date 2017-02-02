@@ -19,11 +19,10 @@ Op de LoginViewController kan de gebruiker (user) een account aanmaken (button: 
 
 | User   | Values | Uitleg|
 | -------|:------:| -----:|
-| uid    | String | $1600 |
-| email  | String |   $12 |
-| group  | String |    $1 |
-| point  | Int    | $1600 |
-
+| uid    | String |   |
+| email  | String |   |
+| group  | String |   |
+| point  | Int    |   |
 
     * een unieke user id (uid)
     * het emailadres
