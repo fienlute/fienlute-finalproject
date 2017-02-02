@@ -40,6 +40,9 @@ Wanneer een gebruiker een doel heeft behaald kan hij/zij op de cell van het doel
 
 Als de gebruiker terug wil komen naar de GoalsViewController moet hij/zij op de meest linker tabbarbutton drukken. 
 
+Methods: 
+
+
 ### RankingViewController
 Op de RankingViewController (middelste tabbarbutton) zijn alle gebruikers te zien die in dezelfde groep zitten als waar de huidige gebruiker in zit. In de tableview zijn alle gebruikers van de groep te zien met het aantal punten dat ze hebben. Er wordt over alle opgeslagen gebruikers in Firebase geloopt. De gebruikers die dezelfde groep hebben als de huidige gebruiker worden in een array gestopt. Deze array met de gefilterde gebruikers wordt geprint in de tableview. Uit de user objecten in deze array worden de emailadressen en het puntensaldo van de gebruikers gehaald, die worden geprint in de cellen van de tableview.
 
