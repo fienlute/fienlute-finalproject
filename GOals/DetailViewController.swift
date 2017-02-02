@@ -89,9 +89,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
 
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DetailCell
         
         cell.selectionStyle = UITableViewCellSelectionStyle.none

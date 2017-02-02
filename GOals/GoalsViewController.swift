@@ -159,8 +159,6 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         })
     }
     
-                // Put goal into array.
-    
     // MARK: UITableView Delegate methods
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

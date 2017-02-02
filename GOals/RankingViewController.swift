@@ -31,48 +31,9 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
 
         // set background image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
-
-        let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
         
-            currentUser.observeSingleEvent(of: .value, with: { snapshot in
+        retrieveUserDataFirebase(retrieveGoalDataFirebase())
 
-            let value = snapshot.value as? NSDictionary
-            self.group = value?["group"] as! String
-            self.name = value?["email"] as! String
-            self.points = value?["points"] as! Int
-                
-            let sortedRef = FIRDatabase.database().reference(withPath: "Users").queryOrdered(byChild: "group").queryEqual(toValue : self.group)
-            
-            sortedRef.observe(.value, with: { snapshot in
-                
-                var newItems: [User] = []
-            
-                for item in snapshot.children {
-
-                    let userItem = User(snapshot: item as! FIRDataSnapshot)
-                    newItems.append(userItem)
-
-                }
-                
-                self.items = newItems
-                
-                self.usersRef.queryOrdered(byChild: "points").observe(.value, with: { snapshot in
-                
-                    var orderedItems: [User] = []
-
-                    for item in snapshot.children {
-                        
-                        let userItem = User(snapshot: item as! FIRDataSnapshot)
-                        orderedItems.append(userItem)
-                    }
-                    orderedItems = orderedItems.reversed()
-                    self.items = orderedItems
-                    self.tableView.reloadData()
-                
-                })
-                
-            })
-        })
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -86,6 +47,54 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         // hide empty cells of tableview
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
+    }
+    
+    func retrieveUserDataFirebase() {
+        let currentUser = FIRDatabase.database().reference(withPath: "Users").child((FIRAuth.auth()?.currentUser)!.uid)
+        
+        currentUser.observeSingleEvent(of: .value, with: { snapshot in
+            
+            let value = snapshot.value as? NSDictionary
+            self.group = value?["group"] as! String
+            self.name = value?["email"] as! String
+            self.points = value?["points"] as! Int
+            
+            
+        })
+    }
+    
+    func retrieveGoalDataFirebase() {
+        let sortedRef = FIRDatabase.database().reference(withPath: "Users").queryOrdered(byChild: "group").queryEqual(toValue : self.group)
+        
+        sortedRef.observe(.value, with: { snapshot in
+            
+            var newItems: [User] = []
+            
+            for item in snapshot.children {
+                
+                let userItem = User(snapshot: item as! FIRDataSnapshot)
+                newItems.append(userItem)
+                
+            }
+            
+            self.items = newItems
+            
+            self.usersRef.queryOrdered(byChild: "points").observe(.value, with: { snapshot in
+                
+                var orderedItems: [User] = []
+                
+                for item in snapshot.children {
+                    
+                    let userItem = User(snapshot: item as! FIRDataSnapshot)
+                    orderedItems.append(userItem)
+                }
+                orderedItems = orderedItems.reversed()
+                self.items = orderedItems
+                self.tableView.reloadData()
+                
+            })
+            
+        })
     }
     
     // MARK: UITableView Delegate methods
@@ -117,6 +126,8 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
 
     }
     
+
+
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        
 //        if segue.identifier == "detailSegue",
