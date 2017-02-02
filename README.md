@@ -23,10 +23,10 @@ Het eerste scherm is de LoginViewController. Hier kan de gebruiker inloggen/regi
 [![BCH compliance](https://bettercodehub.com/edge/badge/fienlute/programmeerproject)](https://bettercodehub.com)
 
 ### Sources 
-https://www.raywenderlich.com/139322/firebase-tutorial-getting-started-2 (used in LoginViewController en User.swift)
-verschillende kleine stukjes code van stackoverflow
-[link]https://code.tutsplus.com/tutorials/ios-from-scratch-with-swift-exploring-tab-bar-controller--cms-25470 (tab-bar tutorial)
-[link]https://grokswift.com/transparent-table-view/ (hide empty cells in tableview)
+https://www.raywenderlich.com/139322/firebase-tutorial-getting-started-2 (used in LoginViewController en User.swift)  
+verschillende kleine stukjes code van stackoverflow  
+https://code.tutsplus.com/tutorials/ios-from-scratch-with-swift-exploring-tab-bar-controller--cms-25470 (tab-bar tutorial)  
+https://grokswift.com/transparent-table-view/ (hide empty cells in tableview)  
 
 
 
