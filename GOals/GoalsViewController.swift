@@ -41,7 +41,7 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mountainbackgroundgoals.png")!)
         title = "Goals"
         
-        retrieveUserDataFirebase(retrieveGoalDataFirebase())
+        retrieveUserDataFirebase()
         
     }
     
@@ -138,32 +138,28 @@ class GoalsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.pointsInt = value?["points"] as! Int
                 self.pointsString = String(self.pointsInt)
                 
-                self.retrieveGoalDataFirebase()
-                
-                })
-            }
-    }
-    
-    func retrieveGoalDataFirebase() {
-        
-        self.goalRef.queryOrdered(byChild: "group").queryEqual(toValue: self.group).observe(.value, with:
-            { (snapshot) in
-                
-                self.goalRef.queryOrdered(byChild: "completedBy").queryEqual(toValue: "").observe(.value, with:
+                self.goalRef.queryOrdered(byChild: "group").queryEqual(toValue: self.group).observe(.value, with:
                     { (snapshot) in
                         
-                        var newItems: [Goal] = []
-                        
-                        for item in snapshot.children {
-
-                            let goalItem = Goal(snapshot: item as! FIRDataSnapshot)
-                            newItems.append(goalItem)
-                        }
-                        self.items = newItems
-                        self.tableView.reloadData()
+                        self.goalRef.queryOrdered(byChild: "completedBy").queryEqual(toValue: "").observe(.value, with:
+                            { (snapshot) in
+                                
+                                var newItems: [Goal] = []
+                                
+                                for item in snapshot.children {
+                                    
+                                    let goalItem = Goal(snapshot: item as! FIRDataSnapshot)
+                                    newItems.append(goalItem)
+                                }
+                                self.items = newItems
+                                self.tableView.reloadData()
+                        })
                 })
-        })
+            })
+        }
     }
+    
+
     
     func isNumeric(a: String) -> Bool {
         return Double(a) == nil
